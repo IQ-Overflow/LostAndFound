@@ -1,14 +1,41 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/card/card",
+    "pages/me/me"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#da8ca0",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "失物招领",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index2.png"
+      },
+      {
+        "pagePath": "pages/card/card",
+        "text": "寻卡",
+        "iconPath": "/images/card.png",
+        "selectedIconPath": "/images/card2.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/images/person.png",
+        "selectedIconPath": "/images/person2.png"
+      }
+    ]
+  }
 }
