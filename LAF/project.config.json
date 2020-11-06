@@ -53,6 +53,13 @@
 					"id": -1,
 					"name": "pages/logs/logs",
 					"pathName": "pages/logs/logs",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/card/card",
+					"pathName": "pages/card/card",
 					"scene": null
 				}
 			]

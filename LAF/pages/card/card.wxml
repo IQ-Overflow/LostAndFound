@@ -1,2 +1,5 @@
-<!--pages/card/card.wxml-->
-<text>pages/card/card.wxml</text>
+<view class="tab">
+    <view class="search selected">搜索</view>
+    <view class="publish">发布</view>
+</view>
+<publish-card></publish-card>
