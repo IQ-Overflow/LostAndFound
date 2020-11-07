@@ -1,1 +1,36 @@
 /* pages/index/index.wxss */
+
+.select {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  box-sizing: border-box;
+  padding-left: 40rpx;
+  padding-top: 20rpx;
+}
+.select-title{
+  margin-right: 40rpx
+}
+.select-btn{
+  display: flex;
+}
+.select-item {
+  width: 100rpx;
+  border: 1px solid #EAEAEA;
+  height: 60rpx;
+  border-radius: 6px 0px 0px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+.active{
+  background: #da8d9f;
+}
+.add{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 90rpx;
+  right:40rpx
+}

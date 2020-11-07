@@ -1,0 +1,22 @@
+<!--components/cShowCard/showCard.wxml-->
+<view class="card-container">
+  <view class="card">
+    <view class="card-header">
+      <!-- <image></image> -->
+      <view class="header-left">
+        <view class="head-img"></view>
+        <view class="name">我是名字</view>
+      </view>
+      <view class="header-right">
+        <view class="type">丢失</view>
+        <view class="status">进行中</view>
+      </view>
+    </view>
+    <view class="title">我是标题哦哦哦哦</view>
+    <view class="content">
+      <view class="content-text">我暂时没有什么丢了的的的的的</view>
+      <view class="content-picture"></view>
+    </view>
+    <view class="btn">申请联系</view>
+  </view>
+</view>

@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "showCard":"/components/cShowCard/showCard"
+  }
 }

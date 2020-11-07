@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "personInfo":"/components/personInfo/personInfo",
+    "clickItem": "/components/clickItem/clickItem"
+  }
 }

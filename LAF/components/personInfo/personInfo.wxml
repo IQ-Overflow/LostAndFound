@@ -1,0 +1,7 @@
+<!--components/personInfo/personInfo.wxml-->
+<view class="container">
+  <view class="person">
+    <view class="head-img"></view>
+    <view class="name">我是名字</view>
+  </view>
+</view>

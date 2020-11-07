@@ -1,0 +1,22 @@
+<!--pages/searchThing/searchThing.wxml-->
+<view class="input-area">
+    <view class="num input">
+        标题：<input  />
+    </view>
+    <view class="name input">
+        详情：<textarea></textarea>
+    </view>
+    <view class="type input">
+        类型：
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">{{array[index]}}</view>
+        </picker>
+    </view>
+     <view class="message input">
+        联系方式：<input  />
+    </view>
+    <view class="addPic">
+        添加图片
+    </view>
+</view>
+<button class="publish">发布</button>
