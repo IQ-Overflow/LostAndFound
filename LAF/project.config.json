@@ -60,6 +60,14 @@
 					"id": -1,
 					"name": "pages/card/card",
 					"pathName": "pages/card/card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
 					"scene": null
 				}
 			]
