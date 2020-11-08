@@ -1,0 +1,24 @@
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="type">丢失</text>
+            <text class="time">2020/11/07 23:50</text>
+        </view>
+    </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">学号：3218005396</view>
+            <view class="name">姓名：黄若筠</view>
+            <view class="college">学院：计算机学院</view>
+        </view>
+        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+    </view>
+    <view class="func">
+        <view class="state">正在进行</view>
+        <view class="apply">申请联系</view>
+    </view>
+</view>
