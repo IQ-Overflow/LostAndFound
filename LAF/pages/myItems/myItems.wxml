@@ -1,4 +1,6 @@
 <view class="tab">
-    <view class="search {{mode=='search'?'selected':'none'}}" bindtap="changeMode" data-mode="search">普通</view>
-    <view class="publish {{mode=='publish'?'selected':'none'}}" bindtap="changeMode" data-mode="publish">学生卡</view>
+    <view class="normal {{mode=='normal'?'selected':'none'}}" bindtap="changeMode" data-mode="normal">普通</view>
+    <view class="card {{mode=='card'?'selected':'none'}}" bindtap="changeMode" data-mode="card">学生卡</view>
 </view>
+<normal-items style="display:{{mode=='normal'?'block':'none'}}"></normal-items>
+<card-items style="display:{{mode=='card'?'block':'none'}}"></card-items>
