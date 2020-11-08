@@ -9,8 +9,9 @@ public class Others {
     private String pic;
     private String uID;
     private boolean flag;
-    private String contact;
     private Timestamp time;
+    // 数据库表里面没有这个字段
+//    private String contact;
 
     public int getoID() {
         return oID;
@@ -60,14 +61,6 @@ public class Others {
         this.flag = flag;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public Timestamp getTime() {
         return time;
     }
@@ -85,7 +78,6 @@ public class Others {
                 ", pic='" + pic + '\'' +
                 ", uID='" + uID + '\'' +
                 ", flag=" + flag +
-                ", contact='" + contact + '\'' +
                 ", time=" + time +
                 '}';
     }
