@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "applyCard": "/components/applyCard/applyCard"
+  },
+  "navigationBarTitleText": "我申请的"
 }

@@ -1,0 +1,54 @@
+/* components/applyCard/applyCard.wxss */
+
+.card-container {
+  padding: 30rpx 40rpx;
+}
+
+.status {
+  color: #608b4e;
+  font-weight: 500;
+  padding-bottom: 10rpx;
+}
+
+.card {
+  border:1px solid #e9b6c2;
+  border-radius: 8rpx;
+  box-shadow: 0px 3px 10px rgba(106, 106, 106, 0.16);
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+}
+
+.origin-content {
+  padding-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content{
+  /* width: 70% */
+  flex: 1;
+}
+.content-picture {
+  width: 150rpx;
+  height: 150rpx;
+  flex: none
+}
+
+.title {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.content-text {
+  padding-bottom: 10rpx;
+}
+
+.status-refuse {
+  color: #f36;
+  font-weight: 500;
+  padding-bottom: 10rpx;
+}
+
+.status-ing {
+  padding-bottom: 10rpx;
+}
