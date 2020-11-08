@@ -1,18 +1,12 @@
-// pages/card/card.js
+// pages/searchThing/searchThing.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    mode: 'search'
-  },
-
-  changeMode(e) {
-    let mode = e.target.dataset.mode
-    this.setData({
-      mode
-    })
+    array: ['捡到', '丢失'],
+    index:0
   },
 
   /**
@@ -21,7 +15,12 @@ Page({
   onLoad: function (options) {
 
   },
-
+  bindPickerChange (e) {
+    this.data.index = e.detail.value
+    this.setData({
+      index: this.data.index
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,1 +1,12 @@
+<view>
+  <view class="select">
+    <view class="select-title">类型筛选</view>
+    <view class="select-btn">
+      <text class="select-item active">丢失</text>
+      <text class="select-item">捡到</text>
+    </view>
+  </view>
+  <showCard></showCard>
 
+  <image src="../../images/add.png" class="add"></image>
+</view>

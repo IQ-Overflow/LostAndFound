@@ -17,7 +17,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.14.0",
-	"appid": "wx2acf84b0645ecb62",
+	"appid": "wx71557bb4776fbfa7",
 	"projectname": "LAF",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -60,6 +60,35 @@
 					"id": -1,
 					"name": "pages/card/card",
 					"pathName": "pages/card/card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "普通寻物",
+					"pathName": "pages/searchThing/searchThing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/me/me",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我申请的",
+					"pathName": "pages/apply/apply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
 					"scene": null
 				}
 			]

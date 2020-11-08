@@ -1,0 +1,9 @@
+<!--components/clickItem/clickItem.wxml-->
+<view class="container">
+  <block wx:for="{{arr}}" wx:key="{{index}}">
+    <view class="item">
+      <view class="item-img" bindtap="toDetail" data-url="{{item.url}}"></view>
+      <view class="item-content">{{item.content}}</view>
+    </view>
+  </block>
+</view>

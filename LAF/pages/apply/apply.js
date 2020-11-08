@@ -1,18 +1,11 @@
-// pages/card/card.js
+// pages/apply/apply.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    mode: 'search'
-  },
 
-  changeMode(e) {
-    let mode = e.target.dataset.mode
-    this.setData({
-      mode
-    })
   },
 
   /**

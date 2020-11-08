@@ -1,22 +1,23 @@
 package com.iqoverflow.lostandfound.controller;
 
 import com.iqoverflow.lostandfound.domain.Card;
-import com.iqoverflow.lostandfound.service.ICardService;
+import com.iqoverflow.lostandfound.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/card")
 public class CardController {
     @Autowired
-    ICardService cardService;
-    @GetMapping("/")
+    CardService cardService;
+
+    //@GetMapping("/")
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
@@ -30,13 +31,15 @@ public class CardController {
 
     //发布学生卡
     @PostMapping("/postcard")
-    public String postCard(@RequestBody Map<String,Object> info){
+    public Boolean postCard(@RequestBody Map<String,Object> info, HttpServletRequest request){
+        HttpSession session = request.getSession();
+
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
         String stuName = (String)info.get("stuName");
-        String uID = (String) info.get("uID");
+        String uID = (String) session.getAttribute("openid");
         Boolean flag = (Boolean)info.get("flag");
-        Timestamp time = Timestamp.valueOf((String)info.get("time"));
+        Timestamp time = new Timestamp(System.currentTimeMillis());
 
         Card card = new Card();
         card.setStuID(stuID);
@@ -45,10 +48,10 @@ public class CardController {
         card.setStuName(stuName);
         card.setFlag(flag);
         card.setTime(time);
-        System.out.println(card);
+        //System.out.println(card);
 
         cardService.postCard(card);
-        return "success";
+        return true;
     }
 
     //根据信息找卡
@@ -62,25 +65,19 @@ public class CardController {
         if(null == card){//输入的学生卡错误或不匹配
 
         }else {
-
+        
         }
 
         return card;
     }
 
-/*    //根据信息找卡
-    @PostMapping("/searchcard2")
-    public Card searchcard2( String stuID, String college,String stuName){
+    //根据uID获取微信
+    @GetMapping("/contact")
+    public String applyForWx(@RequestParam("uID")String uID){
+        return cardService.getWxByuID(uID);
+    }
 
-        Card card = cardService.findCardByInfo(stuID, college, stuName);
-        if(null == card){//输入的学生卡错误或不匹配
 
-        }else {
-
-        }
-
-        return card;
-    }*/
 
 
 }

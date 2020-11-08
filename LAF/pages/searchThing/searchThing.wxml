@@ -1,12 +1,10 @@
+<!--pages/searchThing/searchThing.wxml-->
 <view class="input-area">
     <view class="num input">
-        学号：<input  />
+        标题：<input  />
     </view>
     <view class="name input">
-        姓名：<input  />
-    </view>
-    <view class="college input">
-        学院：<input  />
+        详情：<textarea></textarea>
     </view>
     <view class="type input">
         类型：
@@ -14,7 +12,11 @@
             <view class="picker">{{array[index]}}</view>
         </picker>
     </view>
+     <view class="message input">
+        联系方式：<input  />
+    </view>
+    <view class="addPic">
+        添加图片
+    </view>
 </view>
-<button class="publish">搜索</button>
-
-<card-item></card-item>
+<button class="publish">发布</button>
