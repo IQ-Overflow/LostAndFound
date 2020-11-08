@@ -20,10 +20,8 @@ public interface CardDao {
     void postCard(Card card);
 
     //根据ID得到微信联系方式
-    @Select("SELECT wxAccount" +
-            "FROM user" +
-            "WHERE uID = #{ID}")
-    String findWxByID(Integer ID);
+    @Select("SELECT wxAccount FROM user WHERE uID = #{uID}")
+    String getWxByuID(String uID);
 
     //根据输入的信息找卡
     @Select("SELECT * FROM Card WHERE stuID = #{stuID} AND college = #{college} AND stuName = #{stuName}")

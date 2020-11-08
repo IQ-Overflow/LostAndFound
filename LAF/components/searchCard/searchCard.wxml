@@ -1,2 +1,20 @@
-<!--components/searchCard/searchCard.wxml-->
-<text>components/searchCard/searchCard.wxml</text>
+<view class="input-area">
+    <view class="num input">
+        学号：<input  />
+    </view>
+    <view class="name input">
+        姓名：<input  />
+    </view>
+    <view class="college input">
+        学院：<input  />
+    </view>
+    <view class="type input">
+        类型：
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">{{array[index]}}</view>
+        </picker>
+    </view>
+</view>
+<button class="publish">搜索</button>
+
+<card-item></card-item>
