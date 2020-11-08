@@ -18,4 +18,9 @@ public class UserProfileserviceimpl implements UserProfileservice {
         User userProfile = userProfiledao.getUserProfile(id);
         return userProfile;
     }
+
+    @Override
+    public void setUserProfile(User user) {
+        UserProfiledao.setUserProfile(user);
+    }
 }

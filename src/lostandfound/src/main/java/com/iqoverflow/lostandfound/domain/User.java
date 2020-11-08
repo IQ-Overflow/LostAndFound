@@ -3,8 +3,9 @@ package com.iqoverflow.lostandfound.domain;
 public class User {
     private String uID ;
     private String userName;
-    private String wxAccount;
-    private String sex;
+    private String contact;
+
+    private Integer sex;
 
     public String getuID() {
         return uID;
@@ -23,18 +24,18 @@ public class User {
     }
 
     public String getWxAccount() {
-        return wxAccount;
+        return contact;
     }
 
     public void setWxAccount(String wxAccount) {
-        this.wxAccount = wxAccount;
+        this.contact = wxAccount;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -43,7 +44,7 @@ public class User {
         return "User{" +
                 "uID='" + uID + '\'' +
                 ", userName='" + userName + '\'' +
-                ", wxAccount='" + wxAccount + '\'' +
+                ", wxAccount='" + contact + '\'' +
                 ", sex=" + sex +
                 '}';
     }
