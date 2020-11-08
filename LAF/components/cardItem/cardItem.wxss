@@ -40,7 +40,9 @@
     text-align: right;
 }
 .type{
-    margin-right: 3%;
+    margin-right: 7%;
+    color: rgb(117, 141, 246);
+    color: #ef7030;
 }
 .cardMsg{
     width: 94%;
@@ -63,7 +65,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    margin-top: 3%;
+    margin-top: 6%;
     text-align: right;
     display: flex;
     justify-content: space-between;
