@@ -1,0 +1,4 @@
+<view class="tab">
+    <view class="search {{mode=='search'?'selected':'none'}}" bindtap="changeMode" data-mode="search">普通</view>
+    <view class="publish {{mode=='publish'?'selected':'none'}}" bindtap="changeMode" data-mode="publish">学生卡</view>
+</view>
