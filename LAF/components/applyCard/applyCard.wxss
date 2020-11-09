@@ -1,54 +1,118 @@
-/* components/applyCard/applyCard.wxss */
-
-.card-container {
-  padding: 30rpx 40rpx;
-}
-
-.status {
-  color: #608b4e;
-  font-weight: 500;
-  padding-bottom: 10rpx;
-}
-
 .card {
-  border:1px solid #e9b6c2;
-  border-radius: 8rpx;
-  box-shadow: 0px 3px 10px rgba(106, 106, 106, 0.16);
-  box-sizing: border-box;
-  padding: 20rpx 30rpx;
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 3% auto;
+  border: solid #e9b6c2 2px;
+  border-radius: 5px;
+  position: relative;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
-.origin-content {
-  padding-top: 20rpx;
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.person {
+  margin-left: 2%;
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.avatarUrl {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 3%;
+}
+
+.nickname {
+  align-self: center;
+  font-size: 15px;
+}
+
+.moreMsg {
+  color: #888;
+  font-size: 10px;
+  margin-top: 3%;
+  margin-right: 3%;
+  width: 42%;
+  text-align: right;
+}
+
+.type {
+  margin-right: 3%;
+}
+
+.cardMsg {
+  width: 94%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 14px;
+  margin-top: 2%;
+  color: #696969;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.content{
-  /* width: 70% */
-  flex: 1;
-}
-.content-picture {
-  width: 150rpx;
-  height: 150rpx;
-  flex: none
+
+.img {
+  width: 80px;
+  height: 80px;
 }
 
-.title {
-  color: #666;
-  font-size: 28rpx;
+.func {
+  width: 94%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 3%;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.content-text {
-  padding-bottom: 10rpx;
+.state {
+  font-size: 12px;
+  color: rgb(197, 159, 64);
 }
 
-.status-refuse {
-  color: #f36;
-  font-weight: 500;
-  padding-bottom: 10rpx;
+.state-refuse {
+  font-size: 12px;
+  color: #e33e33;
 }
 
-.status-ing {
-  padding-bottom: 10rpx;
+.refuse-reason {
+  font-size: 12px;
+  color: #c00;
+}
+
+.bottom {
+  width: 94%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 3%;
+}
+.refuse-header{
+  /* color: #3f3f3f */
+}
+.state-ok{
+    font-size: 12px;
+  color: #1aad19
+}
+.contact{
+  font-size: 12px;
+}
+.apply {
+  padding: 2px 5px;
+  background: #e9b6c2;
+  color: white;
+  font-size: 14px;
 }

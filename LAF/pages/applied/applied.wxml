@@ -1,2 +1,2 @@
 <!--pages/applied/applied.wxml-->
-<text>pages/applied/applied.wxml</text>
+<appliedCard></appliedCard>

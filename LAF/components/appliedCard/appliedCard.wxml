@@ -1,0 +1,78 @@
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
+    </view>
+    <view class="submit-reason">
+      申请理由：我的卡丢了,联系你~~~
+    </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">学号：33432445</view>
+            <view class="name">姓名：陈xx</view>
+            <view class="college">学院：计算机学院</view>
+        </view>
+        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+    </view>
+    <view class="func">
+        <view class="ok">通过</view>
+        <view class="refuse">拒绝</view>
+    </view>
+</view>
+
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
+    </view>
+    <view class="submit-reason">
+      申请理由：我的卡丢了,联系你~~~
+    </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">学号：33432445</view>
+            <view class="name">姓名：陈xx</view>
+            <view class="college">学院：计算机学院</view>
+        </view>
+        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+    </view>
+    <view class="func">
+        <view class="status-ok">已通过</view>
+    </view>
+</view>
+
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
+    </view>
+    <view class="submit-reason">
+      申请理由：我的卡丢了,联系你~~~
+    </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">学号：33432445</view>
+            <view class="name">姓名：陈xx</view>
+            <view class="college">学院：计算机学院</view>
+        </view>
+        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+    </view>
+    <view class="func">
+        <view class="status-refuse">已拒绝</view>
+    </view>
+</view>

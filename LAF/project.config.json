@@ -90,6 +90,12 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "向我提交的申请",
+					"pathName": "pages/applied/applied",
+					"scene": null
 				}
 			]
 		}

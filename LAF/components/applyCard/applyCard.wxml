@@ -1,26 +1,74 @@
-<!--components/applyCard/applyCard.wxml-->
-<view class="card-container">
-  <view class="card">
-    <view class="status">通过</view>
-    <view class="method">联系方式：13720323183</view>
-    <view class="origin-content">
-      <view class="content">
-        <view class="title">我是标题哦哦哦哦</view>
-        <view class="content-text">我暂时没有什么丢了的的的的的哈哈哈哈你说啥的</view>
-      </view>
-      <image class="content-picture" src="../../images/head-img.jpg"></image>
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="../../images/head-img.jpg"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
     </view>
-  </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">我是标题噢噢噢噢噢噢</view>
+            <view class="name">我是内容啦</view>
+        </view>
+        <image class="img" src="../../images/head-img.jpg" />
+    </view>
+    <view class="func">
+        <view class="state">正在进行</view>
+    </view>
 </view>
-<view class="card-container">
-  <view class="card">
-    <view class="status">拒绝</view>
-    <view class="origin-content">
-      <view class="content">
-        <view class="title">我是标题哦哦哦哦</view>
-        <view class="content-text">我暂时没有什么丢了的的的的的哈哈哈哈你说啥的</view>
-      </view>
-      <image class="content-picture" src="../../images/head-img.jpg"></image>
+
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="../../images/head-img.jpg"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
     </view>
-  </view>
+
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">我是原卡片的标题噢噢噢噢噢噢</view>
+            <view class="name">我是内容啦</view>
+        </view>
+        <image class="img" src="../../images/head-img.jpg" />
+    </view>
+    <view class="bottom">
+        <view class="state-refuse">拒绝</view>
+        <view class="refuse-reason">
+          <text class="refuse-header">拒绝理由：</text>
+        因为我不想把微信给你呵呵呵呵</view>
+    </view>
+</view>
+
+
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="../../images/head-img.jpg"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="time">2020/11/07 23:50</text>
+        </view>
+    </view>
+
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">我是原卡片的标题噢噢噢噢噢噢</view>
+            <view class="name">我是内容啦</view>
+        </view>
+        <image class="img" src="../../images/head-img.jpg" />
+    </view>
+    <view class="bottom">
+        <view class="state-ok">同意</view>
+        <view class="contact">
+          <text class="contact-header">联系方式：</text>
+        微信：14232324frt</view>
+    </view>
 </view>
