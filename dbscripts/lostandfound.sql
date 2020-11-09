@@ -57,10 +57,21 @@ insert  into `others`(`oID`,`title`,`content`,`pic`,`uID`,`flag`,`time`) values 
 
 DROP TABLE IF EXISTS `reason`;
 
+/*
 CREATE TABLE `reason` (
   `flag` tinyint(1) DEFAULT NULL COMMENT 'TURE表示寻卡贴，FALSE表示寻物贴',
   `ID` varchar(32) DEFAULT NULL COMMENT 'stuID或oID',
   `Message` text COMMENT '申请理由'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
+
+CREATE TABLE reason
+(`pID` VARCHAR(64) COMMENT '物品的id，为stuID或oID',
+ `fID` VARCHAR(64) COMMENT '申请人的uid',
+ `tID` VARCHAR(64) COMMENT '被申请人的uid',
+ `message` VARCHAR(128) COMMENT '申请理由',
+ `state` int(1) COMMENT '状态标记：0进行中，1已同意，2已拒绝',
+ PRIMARY KEY(pID,fID,tID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `reason` */
