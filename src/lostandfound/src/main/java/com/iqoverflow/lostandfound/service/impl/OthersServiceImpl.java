@@ -15,6 +15,11 @@ public class OthersServiceImpl implements OthersService {
     @Autowired
     private OthersDao othersDao;
 
+    @Override
+    public List<Others> getOthersForPage(int begin, int pageSize) {
+        return othersDao.selectOthersForPage(begin, pageSize);
+    }
+
     // 获取所有others
     @Override
     public List<Others> getOthersList() {

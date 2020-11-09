@@ -2,6 +2,7 @@ package com.iqoverflow.lostandfound.controller;
 
 import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.service.OthersService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,16 @@ public class OthersController {
     @Autowired
     private OthersService othersService;
 
+    // 按分页方式返回others
+    @GetMapping("/getOthersForPage")
+    public List<Others> getOthersForPage(@Param("begin") int begin, @Param("pageSize") int pageSize) {
+        return othersService.getOthersForPage(begin, pageSize);
+    }
+
     // 获取所有others
     @GetMapping("/getOthersList")
-    public List<Others> getOthersList(Model model) {
-        List<Others> othersList = othersService.getOthersList();
-        model.addAttribute("othersList", othersList);
-        return othersList;
+    public List<Others> getOthersList() {
+        return othersService.getOthersList();
     }
 
     // 发布物品
