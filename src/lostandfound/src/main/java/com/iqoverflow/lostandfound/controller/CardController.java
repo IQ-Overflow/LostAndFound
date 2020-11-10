@@ -24,13 +24,13 @@ public class CardController {
         return modelAndView;
     }
 
-    @GetMapping("/findcards")
+    @GetMapping("/findCards")
     public Card[] findCards(){
         return cardService.findAllCards();
     }
 
     //发布学生卡
-    @PostMapping("/postcard")
+    @PostMapping("/postCard")
     public Boolean postCard(@RequestBody Map<String,Object> info, HttpServletRequest request){
         HttpSession session = request.getSession();
 
@@ -55,7 +55,7 @@ public class CardController {
     }
 
     //根据信息找卡
-    @PostMapping("/searchcard")
+    @PostMapping("/searchCard")
     public Card searchcard(@RequestBody Map<String,Object> info){
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
