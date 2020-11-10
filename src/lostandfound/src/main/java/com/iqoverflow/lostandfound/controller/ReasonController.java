@@ -35,14 +35,21 @@ public class ReasonController {
     }
 
     //返回“我申请的”
-    @GetMapping("/myapplies")
+    @GetMapping("/myApplies")
     public Reason[] myApplies(HttpServletRequest request){
         HttpSession session = request.getSession();
-        String fID = (String)session.getAttribute("uID");
-        if(fID == null){
-            
-        }
+        String fID = (String)session.getAttribute("openid");
+
         return reasonService.myApplies(fID);
     }
+
+    //返回“向我申请的"
+    @GetMapping("/receivedApplies")
+    public Reason[] myReceivedApplies(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String tID = (String)session.getAttribute("openid");
+        return reasonService.myReceivedApplies(tID);
+    }
+
 
 }

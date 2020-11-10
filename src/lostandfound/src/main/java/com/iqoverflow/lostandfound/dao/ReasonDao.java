@@ -14,8 +14,12 @@ public interface ReasonDao {
     @Insert("INSERT INTO reason(`pID`,`fID`,`tID`,`message`,`state`) VALUES( #{pID}, #{fID}, #{tID}, #{message}, #{state} )")
     int insertReason(Reason reason);
 
-    //查询fID的所有申请
+    // 查询fID的所有申请
     @Select("SELECT * FROM reason WHERE fID = #{fID}")
     Reason[] selectApplyByfId(String fID);
+
+    // 查询fID收到的申请
+    @Select("SELECT * FROM reason WHERE tID = #{tID}")
+    Reason[] selectReceivedAppliesOftID(String tID);
 
 }

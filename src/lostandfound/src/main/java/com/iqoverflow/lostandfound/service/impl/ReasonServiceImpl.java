@@ -22,4 +22,9 @@ public class ReasonServiceImpl implements ReasonService {
     public Reason[] myApplies(String fID) {
         return reasonDao.selectApplyByfId(fID);
     }
+
+    @Override
+    public Reason[] myReceivedApplies(String tID) {
+        return  reasonDao.selectReceivedAppliesOftID(tID);
+    }
 }
