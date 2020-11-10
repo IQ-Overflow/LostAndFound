@@ -39,6 +39,9 @@ public class ReasonController {
     public Reason[] myApplies(HttpServletRequest request){
         HttpSession session = request.getSession();
         String fID = (String)session.getAttribute("uID");
+        if(fID == null){
+            
+        }
         return reasonService.myApplies(fID);
     }
 
