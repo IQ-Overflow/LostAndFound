@@ -15,6 +15,7 @@ public class OthersServiceImpl implements OthersService {
     @Autowired
     private OthersDao othersDao;
 
+    // 按分页方式展示others信息
     @Override
     public List<Others> getOthersForPage(int begin, int pageSize) {
         return othersDao.selectOthersForPage(begin, pageSize);

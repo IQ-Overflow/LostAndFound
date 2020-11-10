@@ -11,6 +11,12 @@ public class ReasonServiceImpl implements ReasonService {
     @Autowired
     private ReasonDao reasonDao;
 
+    // 申请联系
+    @Override
+    public int appliesForContact(Reason reason) {
+        return reasonDao.insertReason(reason);
+    }
+
     //查询fID的所有申请
     @Override
     public Reason[] myApplies(String fID) {
