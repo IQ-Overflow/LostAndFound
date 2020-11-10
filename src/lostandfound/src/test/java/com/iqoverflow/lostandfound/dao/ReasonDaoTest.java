@@ -12,6 +12,19 @@ public class ReasonDaoTest {
     private ReasonDao reasonDao;
 
     @Test
+    public void updateStateTest() {
+        Reason reason = new Reason();
+        reason.setpID("2");
+        reason.setfID("2");
+        reason.setState(1);
+
+        reason.settID("0");
+        reason.setMessage("0");
+        int i = reasonDao.updateState(reason);
+        System.out.println("===========" + i + "===========");
+    }
+
+    @Test
     public void insertReasonTest() {
         Reason reason = new Reason();
         reason.setpID("2");

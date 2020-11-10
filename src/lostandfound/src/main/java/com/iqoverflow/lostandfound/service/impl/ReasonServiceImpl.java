@@ -11,6 +11,18 @@ public class ReasonServiceImpl implements ReasonService {
     @Autowired
     private ReasonDao reasonDao;
 
+    // 同意申请
+    @Override
+    public int agreeApplies(Reason reason) {
+        return reasonDao.updateState(reason);
+    }
+
+    // 拒绝申请
+    @Override
+    public int refuseApplies(Reason reason) {
+        return reasonDao.updateState(reason);
+    }
+
     // 申请联系
     @Override
     public int appliesForContact(Reason reason) {
