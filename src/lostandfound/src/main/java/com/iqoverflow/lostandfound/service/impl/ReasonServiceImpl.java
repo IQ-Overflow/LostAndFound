@@ -29,12 +29,13 @@ public class ReasonServiceImpl implements ReasonService {
         return reasonDao.insertReason(reason);
     }
 
-    //查询fID的所有申请
+    // 查询fID的所有申请
     @Override
     public Reason[] myApplies(String fID) {
         return reasonDao.selectApplyByfId(fID);
     }
 
+    // 查询tID收到的申请
     @Override
     public Reason[] myReceivedApplies(String tID) {
         return  reasonDao.selectReceivedAppliesOftID(tID);

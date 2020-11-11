@@ -49,8 +49,11 @@ public class CardController {
         card.setFlag(flag);
         card.setTime(time);
         //System.out.println(card);
-
-        cardService.postCard(card);
+        try{
+            cardService.postCard(card);
+        }catch (Exception e){
+            return false;
+        }
         return true;
     }
 
