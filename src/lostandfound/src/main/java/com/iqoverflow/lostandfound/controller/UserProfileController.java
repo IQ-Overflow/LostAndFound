@@ -15,12 +15,13 @@ import javax.servlet.http.HttpSession;
 public class UserProfileController {
     @Autowired
     private UserProfileservice userProfileservice;
-@GetMapping("/getuserProfile")
-public User getUserProfile(Model model, HttpSession session ){
-    String openid = (String) session.getAttribute("openid");
-    User userProfile = userProfileservice.getUserProfile(openid);
-    model.addAttribute("userProfile",userProfile);
-     return userProfile;
-}
+    //获取用户个人信息
+    @GetMapping("/getuserProfile")
+    public User getUserProfile(Model model, HttpSession session) {
+        String openid = (String) session.getAttribute("openid");
+        User userProfile = userProfileservice.getUserProfile(openid);
+        model.addAttribute("userProfile", userProfile);
+        return userProfile;
+    }
 
 }
