@@ -43,6 +43,7 @@ public class OthersController {
         others.setTitle((String) othersMap.get("title"));
         others.setContent((String) othersMap.get("content"));
         others.setPic((String) othersMap.get("pic"));
+        // 获取用户id
         others.setuID((String) httpSession.getAttribute("openid"));
         others.setFlag((Boolean) othersMap.get("flag"));
         others.setTime(new Timestamp(System.currentTimeMillis()));
