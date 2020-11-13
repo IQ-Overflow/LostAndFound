@@ -1,22 +1,24 @@
-<!--components/cShowCard/showCard.wxml-->
-<view class="card-container">
-  <view class="card">
-    <view class="card-header">
-      <!-- <image></image> -->
-      <view class="header-left">
-        <view class="head-img"></view>
-        <view class="name">我是名字</view>
-      </view>
-      <view class="header-right">
-        <view class="type">丢失</view>
-        <view class="status">进行中</view>
-      </view>
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <view class="nickname">昵称</view>
+        </view>
+        <view class="moreMsg">
+            <text class="type">{{type==='lost'?'丢失':'捡到'}}</text>
+            <text class="time">2020/11/07 23:50</text>
+        </view>
     </view>
-    <view class="title">我是标题哦哦哦哦</view>
-    <view class="content">
-      <view class="content-text">我暂时没有什么丢了的的的的的</view>
-      <view class="content-picture"></view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">标题：我是普通丢失的卡片的标题</view>
+            <view class="name">内容：我是普通丢失的卡片的内容</view>
+            <!-- <view class="college">学院：计算机学院</view> -->
+        </view>
+        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
     </view>
-    <view class="btn">申请联系</view>
-  </view>
+    <view class="func">
+        <view class="state">正在进行</view>
+        <view class="apply">申请联系</view>
+    </view>
 </view>
