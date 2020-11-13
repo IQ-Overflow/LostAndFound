@@ -1,10 +1,11 @@
 //index.js
 //获取应用实例
 const app = getApp()
+import request from '../../utils/request'
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '为了提供更好的服务，请点击授权登录❤',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -46,7 +47,19 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res)
+        // request({
+        //   url: `/wxLogin?code=${res.code}`,
+        //   method: 'POST'
+        // })
+        // .then(res => {
+        //   console.log(res)
+        // })
+      }
+    })
     wx.setStorageSync(e.detail.rawData)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    let openid = wx.getStorageSync('openid');
 
     // 登录
     wx.login({
@@ -25,6 +26,10 @@ App({
                 this.userInfoReadyCallback(res)
               }
             }
+          })
+        } else {            //没有获得授权
+          wx.navigateTo({
+            url: '/pages/login/login'
           })
         }
       }
