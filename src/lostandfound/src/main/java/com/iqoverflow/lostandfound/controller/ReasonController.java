@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -17,57 +18,72 @@ public class ReasonController {
 
     // 同意申请
     @PostMapping("/agreeApplies")
-    public Boolean agreeApplies(@RequestBody Map<String, Object> map, HttpServletRequest request) {
+    public Map<String, Object> agreeApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Reason reason = new Reason();
-        reason.setpID((String) map.get("pID"));
-        reason.setfID((String) map.get("fID"));
+        reason.setpID((String) info.get("pID"));
+        reason.setfID((String) info.get("fID"));
         reason.setState(1);
         reason.settID((String) session.getAttribute("openid"));
         reason.setMessage("");
         int result = reasonService.agreeApplies(reason);
+        // 返回发布结果
+        Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            return true;
+            map.put("code",1);
+            map.put("msg", "已同意");
         } else {
-            return false;
+            map.put("code",0);
+            map.put("msg", "同意失败，请稍后重试");
         }
+        return map;
     }
 
     // 拒绝申请
     @PostMapping("/refuseApplies")
-    public Boolean refuseApplies(@RequestBody Map<String, Object> map, HttpServletRequest request) {
+    public Map<String, Object> refuseApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Reason reason = new Reason();
-        reason.setpID((String) map.get("pID"));
-        reason.setfID((String) map.get("fID"));
+        reason.setpID((String) info.get("pID"));
+        reason.setfID((String) info.get("fID"));
         reason.setState(2);
         reason.settID((String) session.getAttribute("openid"));
         reason.setMessage("");
         int result = reasonService.refuseApplies(reason);
+        // 返回发布结果
+        Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            return true;
+            map.put("code",1);
+            map.put("msg", "已拒绝");
         } else {
-            return false;
+            map.put("code",0);
+            map.put("msg", "拒绝失败，请稍后重试");
         }
+        return map;
     }
 
     // 申请联系
     @PostMapping("/appliesForContact")
-    public Boolean appliesForContact(@RequestBody Map<String, Object> map, HttpServletRequest request) {
+    public Map<String, Object> appliesForContact(@RequestBody Map<String, Object> info, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Reason reason = new Reason();
-        reason.setpID((String) map.get("pID"));
+        reason.setpID((String) info.get("pID"));
         reason.setfID((String) session.getAttribute("openid"));
-        reason.settID((String) map.get("tID"));
-        reason.setMessage((String) map.get("message"));
+        reason.settID((String) info.get("tID"));
+        reason.setMessage((String) info.get("message"));
         reason.setState(0);
         // 提交申请，返回提交结果
         int result = reasonService.appliesForContact(reason);
+        // 返回发布结果
+        Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            return true;
+            map.put("code",1);
+            map.put("msg", "发布申请成功");
         } else {
-            return false;
+            map.put("code",0);
+            map.put("msg", "发布申请失败");
         }
+        return map;
     }
 
     //返回“我申请的”
