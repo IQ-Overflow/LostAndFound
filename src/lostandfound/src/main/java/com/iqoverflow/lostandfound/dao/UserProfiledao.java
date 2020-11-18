@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserProfiledao {
-    @Insert("insert into user (uID,userName,sex) values (#{uID},#{userName},#{sex})")
+    @Insert("insert into user (uID,userName,sex,avatarUrl,country,province,city,language) values (#{uID},#{userName},#{sex},#{avatarUrl},#{country},#{province},#{city},#{language})")
     static void setUserProfile(User user) {
     }
 
