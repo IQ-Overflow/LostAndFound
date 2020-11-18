@@ -1,12 +1,22 @@
 <view>
   <view class="select">
-    <view class="select-title">类型筛选</view>
     <view class="select-btn">
-      <text class="select-item active">丢失</text>
-      <text class="select-item">捡到</text>
+      <text class="select-item {{label==='lost'?'active':''}}" bindtap="changeTab" data-label="lost">丢失</text>
+      <text class="select-item {{label==='get'?'active':''}}" bindtap="changeTab" data-label="get">捡到</text>
     </view>
-  </view>
-  <showCard></showCard>
+    <view class="input">
+      <!-- 搜索： -->
+      <input />
+      <view class="btn">搜索</view>
+    </view>
 
-  <image src="../../images/add.png" class="add"></image>
+  </view>
+  <view wx:if="{{label==='lost'}}">
+    <showCard></showCard>
+  </view>
+  <view wx:if="{{label==='get'}}">
+    <showCard type='get'></showCard>
+    <showCard type='get'></showCard>
+  </view>
+  <image src="../../images/add.png" class="add" bindtap="add"></image>
 </view>

@@ -5,9 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    label:'lost'
   },
-
+  changeTab(e){
+    this.setData({
+      label: e.currentTarget.dataset.label
+    })
+    // console.log(e)
+  },
+  add(){
+    // 发布丢失或者捡到
+    wx.navigateTo({
+      url: '/pages/searchThing/searchThing',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

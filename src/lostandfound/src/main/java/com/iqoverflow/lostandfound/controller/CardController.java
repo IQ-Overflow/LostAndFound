@@ -1,6 +1,9 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Message;
 import com.iqoverflow.lostandfound.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -31,8 +35,12 @@ public class CardController {
 
     //发布学生卡
     @PostMapping("/postCard")
-    public Boolean postCard(@RequestBody Map<String,Object> info, HttpServletRequest request){
+    public Message postCard(@RequestBody Map<String,Object> info, HttpServletRequest request) throws JsonProcessingException {
         HttpSession session = request.getSession();
+
+
+        Message msg ;
+
 
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
@@ -40,6 +48,18 @@ public class CardController {
         String uID = (String) session.getAttribute("openid");
         Boolean flag = (Boolean)info.get("flag");
         Timestamp time = new Timestamp(System.currentTimeMillis());
+
+        if(stuID == null || college == null || stuName == null || flag == null){
+            msg = new Message(false,"请输入完整的信息");
+            return msg;
+        }
+
+        if(stuID.length() != 10){
+            msg = new Message(false,"请输入正确的学号");
+            return msg;
+        }
+
+
 
         Card card = new Card();
         card.setStuID(stuID);
@@ -52,9 +72,13 @@ public class CardController {
         try{
             cardService.postCard(card);
         }catch (Exception e){
-            return false;
+
+            msg = new Message(false,"该学生卡已被发布");
+            return msg;
         }
-        return true;
+
+        msg = new Message(true,"发布成功");
+        return msg;
     }
 
     //根据信息找卡

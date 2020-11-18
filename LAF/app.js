@@ -1,14 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res)
-      }
-    })
+    let openid = wx.getStorageSync('openid');
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -25,6 +18,10 @@ App({
                 this.userInfoReadyCallback(res)
               }
             }
+          })
+        } else {            //没有获得授权
+          wx.navigateTo({
+            url: '/pages/login/login'
           })
         }
       }
