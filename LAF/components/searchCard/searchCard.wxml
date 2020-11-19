@@ -1,12 +1,12 @@
 <view class="input-area">
     <view class="num input">
-        学号：<input  />
+        学号：<input  bindblur="getStuNum"  value="{{stuNum}}"/>
     </view>
     <view class="name input">
-        姓名：<input  />
+        姓名：<input  bindblur="getName"  value="{{name}}"/>
     </view>
     <view class="college input">
-        学院：<input  />
+        学院：<input  bindblur="getCollege"  value="{{college}}"/>
     </view>
     <view class="type input">
         类型：
@@ -15,6 +15,6 @@
         </picker>
     </view>
 </view>
-<button class="publish">搜索</button>
+<button class="publish" bindtap="search">搜索</button>
 
 <card-item></card-item>

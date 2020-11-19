@@ -4,6 +4,7 @@
     left: 0;
     right: 0;
     margin: 10% auto;
+    text-align: center;
 }
 .input{
     display: flex;
@@ -31,7 +32,19 @@ input, picker{
     text-align: center;
     line-height: 175px;
     margin-top: 5%;
+    position: relative;
+    overflow: hidden;
 }
 .publish{
     margin-bottom: 10%;
+}
+.uploadImg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.delBtn{
+    color: grey;
+    margin-top: 5px;
 }
