@@ -1,9 +1,7 @@
 package com.iqoverflow.lostandfound.dao;
 
 import com.iqoverflow.lostandfound.domain.Card;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
@@ -25,5 +23,11 @@ public interface CardDao {
 
     // 根据输入的信息找卡
     @Select("SELECT * FROM Card WHERE stuID = #{stuID} AND college = #{college} AND stuName = #{stuName}")
+    @Results(
+            value  ={
+            @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+            @Result(property = "uID", column = "uID")
+            }
+    )
     Card findCardByInfo(String stuID,String college,String stuName);
 }

@@ -2,12 +2,12 @@ package com.iqoverflow.lostandfound.domain;
 
 public class Message {
     private boolean flag;
-    private String msg;
+    private Object msg;
 
     public Message() {
     }
 
-    public Message(boolean flag, String msg) {
+    public Message(boolean flag, Object msg) {
         this.flag = flag;
         this.msg = msg;
     }
@@ -20,11 +20,11 @@ public class Message {
         this.flag = flag;
     }
 
-    public String getMsg() {
+    public Object getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public void setMsg(Object msg) {
         this.msg = msg;
     }
 }

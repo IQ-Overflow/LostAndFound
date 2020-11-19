@@ -4,6 +4,7 @@ import com.iqoverflow.lostandfound.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -16,6 +17,9 @@ public interface UserProfiledao {
 
     @Select("select * from User where uID=#{id}")
     abstract User getUserProfile(String id);
+
+    @Update("UPDATE user SET contact = #{contact} WHERE uID = #{uID}")
+    void setUserContact(String uID,String contact);
 
 
 }
