@@ -31,7 +31,7 @@ public class CardController {
 
 
 
-    private HttpSession session;
+    private HttpSession session = null;
 
     @ModelAttribute
     public ModelAndView index(HttpServletRequest request){
@@ -58,6 +58,10 @@ public class CardController {
     public Message postCard(@RequestBody Map<String,Object> info, HttpServletRequest request) throws JsonProcessingException {
 
         Message msg ;
+
+        if(this.session == null){
+            this.session = request.getSession();
+        }
 
 
         String stuID = (String)info.get("stuID");
