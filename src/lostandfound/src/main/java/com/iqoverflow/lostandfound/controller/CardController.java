@@ -1,14 +1,23 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Message;
+import com.iqoverflow.lostandfound.domain.User;
+import com.iqoverflow.lostandfound.listener.MySessionContext;
 import com.iqoverflow.lostandfound.service.CardService;
+import com.iqoverflow.lostandfound.service.UserProfileservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -17,10 +26,25 @@ public class CardController {
     @Autowired
     CardService cardService;
 
-    //@GetMapping("/")
-    public ModelAndView index(){
+    @Autowired
+    UserProfileservice userProfileservice;
+
+
+
+    private HttpSession session = null;
+
+    @ModelAttribute
+    public ModelAndView index(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        Cookie[] cookies = request.getCookies();
+        HttpSession session = null;
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("JSESSIONID")){
+                session = MySessionContext.getSession("JSESSIONID");
+                this.session =session;
+            }
+        }
+
         return modelAndView;
     }
 
@@ -31,15 +55,39 @@ public class CardController {
 
     //发布学生卡
     @PostMapping("/postCard")
-    public Boolean postCard(@RequestBody Map<String,Object> info, HttpServletRequest request){
-        HttpSession session = request.getSession();
+    public Message postCard(@RequestBody Map<String,Object> info, HttpServletRequest request) throws JsonProcessingException {
+
+        Message msg ;
+
+        if(this.session == null){
+            this.session = request.getSession();
+        }
+
 
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
         String stuName = (String)info.get("stuName");
-        String uID = (String) session.getAttribute("openid");
+        String uID = (String) this.session.getAttribute("openid");
         Boolean flag = (Boolean)info.get("flag");
-        Timestamp time = new Timestamp(System.currentTimeMillis());
+        Timestamp time = new Timestamp(new Date().getTime());
+
+        String contact =(String)info.get("contact");
+
+        if(stuID == null || college == null || stuName == null || flag == null){
+            msg = new Message(false,"请输入完整的信息");
+            return msg;
+        }
+
+        if(stuID.length() != 10){
+            msg = new Message(false,"请输入正确的学号");
+            return msg;
+        }
+
+        if(contact == null){
+            msg = new Message(false,"请输入您的联系方式");
+            return msg;
+        }
+
 
         Card card = new Card();
         card.setStuID(stuID);
@@ -52,26 +100,36 @@ public class CardController {
         try{
             cardService.postCard(card);
         }catch (Exception e){
-            return false;
+
+            msg = new Message(false,"该学生卡已被发布");
+            return msg;
         }
-        return true;
+
+        userProfileservice.setUserContact(uID,contact);
+
+        msg = new Message(true,"发布成功");
+        return msg;
     }
 
     //根据信息找卡
     @PostMapping("/searchCard")
-    public Card searchcard(@RequestBody Map<String,Object> info){
+    public Message searchcard(@RequestBody Map<String,Object> info){
+
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
         String stuName = (String)info.get("stuName");
         Card card = cardService.findCardByInfo(stuID, college, stuName);
 
-        if(null == card){//输入的学生卡错误或不匹配
 
+        Message msg;
+
+        if(null == card){//输入的学生卡错误或不匹配
+            msg = new Message(false,card);
         }else {
-        
+            msg = new Message(true,card);
         }
 
-        return card;
+        return msg;
     }
 
     //根据uID获取微信

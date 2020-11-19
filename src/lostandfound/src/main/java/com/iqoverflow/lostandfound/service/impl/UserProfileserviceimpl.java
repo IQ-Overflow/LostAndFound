@@ -23,4 +23,9 @@ public class UserProfileserviceimpl implements UserProfileservice {
     public void setUserProfile(User user) {
         UserProfiledao.setUserProfile(user);
     }
+
+    @Override
+    public void setUserContact(String uID, String contact) {
+        userProfiledao.setUserContact(uID,contact);
+    }
 }

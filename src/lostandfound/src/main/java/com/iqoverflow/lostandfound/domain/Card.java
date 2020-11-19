@@ -1,5 +1,7 @@
 package com.iqoverflow.lostandfound.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 public class Card {
@@ -8,7 +10,17 @@ public class Card {
     private String stuName;
     private String uID;
     private boolean flag;
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp time;
+    private User poster;//发布人
+
+    public User getPoster() {
+        return poster;
+    }
+
+    public void setPoster(User poster) {
+        this.poster = poster;
+    }
 
     public String getStuID() {
         return stuID;
