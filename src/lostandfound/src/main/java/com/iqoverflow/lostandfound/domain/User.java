@@ -75,13 +75,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getWxAccount() {
-        return contact;
-    }
-
-    public void setWxAccount(String wxAccount) {
-        this.contact = wxAccount;
-    }
 
     public Integer getSex() {
         return sex;
