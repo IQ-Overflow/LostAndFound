@@ -117,7 +117,12 @@ public class CardController {
             return msg;
         }
 
-        userProfileservice.setUserContact(uID,contact);
+        try{
+            userProfileservice.setUserContact(uID,contact);
+        }catch (Exception e){
+            
+        }
+
 
         msg = new Message(true,"发布成功");
         return msg;
