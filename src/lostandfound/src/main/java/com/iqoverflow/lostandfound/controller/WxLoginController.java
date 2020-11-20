@@ -54,6 +54,7 @@ public class WxLoginController {
         if(user==null){
                user = new User();
                user.setuID(wxSessionModel.getOpenid());
+               System.out.println("用户的openid ： " + wxSessionModel.getOpenid());
                user.setUserName((String) map.get("nickName"));
                user.setSex((Integer) map.get("gender"));
                user.setAvatarUrl((String) map.get("avatarUrl"));

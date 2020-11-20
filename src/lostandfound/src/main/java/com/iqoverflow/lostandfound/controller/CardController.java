@@ -29,8 +29,6 @@ public class CardController {
     @Autowired
     UserProfileservice userProfileservice;
 
-
-
     private HttpSession session = null;
 
     @ModelAttribute
@@ -38,8 +36,14 @@ public class CardController {
         ModelAndView modelAndView = new ModelAndView();
         Cookie[] cookies = request.getCookies();
         HttpSession session = null;
+        if(cookies == null){
+            this.session = request.getSession();
+            System.out.println("没有cookie！");
+            return modelAndView;
+        }
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("JSESSIONID")){
+                System.out.println("获取了session!");
                 session = MySessionContext.getSession("JSESSIONID");
                 this.session =session;
             }
@@ -85,6 +89,14 @@ public class CardController {
 
         if(contact == null){
             msg = new Message(false,"请输入您的联系方式");
+            return msg;
+        }
+
+        //若该卡曾被发布
+        Card c = cardService.findCardByInfo(stuID,college,stuName);
+        if(c.getState() == 1){
+            cardService.repostCard(stuID,flag);
+            msg = new Message(true,"发布成功");
             return msg;
         }
 
@@ -136,6 +148,22 @@ public class CardController {
     @GetMapping("/contact")
     public String applyForWx(@RequestParam("uID")String uID){
         return cardService.getWxByuID(uID);
+    }
+
+    @DeleteMapping("cancel")
+    public Message cancelCard(@RequestBody Map<String,Object> info){
+        Message msg;
+        String stuID = (String)info.get("stuID");
+        Boolean flag = (Boolean)info.get("flag");
+
+        try{
+            cardService.cancelCard(stuID,flag);
+        }catch (Exception e){
+            msg = new Message(false,"删除失败,不存在该贴子");
+        }
+
+        msg = new Message(true,"删除成功");
+        return msg;
     }
 
 
