@@ -18,7 +18,8 @@ Component({
     type: true,
     stuNum: '',
     name: '',
-    college: ''
+    college: '',
+    contact: ''
   },
 
   /**
@@ -65,7 +66,8 @@ Component({
           stuID: this.data.stuNum,
           college: this.data.college,
           stuName: this.data.name,
-          flag: this.data.type
+          flag: this.data.type,
+          contact: this.data.contact
         },
         method: 'POST'
       })
@@ -77,7 +79,8 @@ Component({
           _this.setData({
             stuNum: '',
             name: '',
-            college: ''
+            college: '',
+            contact: ''
           })
         } else if(res.data.flag == false){
           wx.showToast({
@@ -100,6 +103,11 @@ Component({
     getCollege(e) {
       this.setData({
         college: e.detail.value
+      })
+    },
+    getContact(e) {
+      this.setData({
+        contact: e.detail.value
       })
     }
   }
