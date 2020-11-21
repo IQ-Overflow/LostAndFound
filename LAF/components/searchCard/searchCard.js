@@ -17,7 +17,8 @@ Component({
     type: true,
     stuNum: '',
     name: '',
-    college: ''
+    college: '',
+    cardMsg: null
   },
 
   /**
@@ -68,6 +69,19 @@ Component({
       })
       .then(res => {
         console.log(res.data)
+        if(res.data.flag == true) {
+          this.setData({
+            cardMsg : res.data.msg
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '查找不到相关信息'
+          })
+          this.setData({
+            cardMsg : null
+          })
+        }
       })
     },
   }

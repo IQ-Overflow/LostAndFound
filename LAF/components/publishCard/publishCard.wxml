@@ -14,6 +14,9 @@
             <view class="picker">{{array[index]}}</view>
         </picker>
     </view>
+    <view class="input">
+        联系方式：<input bindblur="getContact" value="{{contact}}" type="text"/>
+    </view>
     <!-- <view class="addPic" bindtap="addPic">
         添加图片
         <image class="uploadImg" src="{{uploadImg}}"></image>
