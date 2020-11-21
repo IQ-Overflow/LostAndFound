@@ -62,7 +62,7 @@ public class WxLoginController {
                user.setProvince((String) map.get("province"));
                user.setCountry((String) map.get("country"));
                user.setLanguage((String) map.get("language"));
-                userProfileservice.setUserProfile(user);
+               userProfileservice.setUserProfile(user);
 
         }
 

@@ -44,7 +44,7 @@ public class CardController {
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("JSESSIONID")){
                 System.out.println("获取了session!");
-                session = MySessionContext.getSession("JSESSIONID");
+                session = MySessionContext.getSession(cookie.getValue());
                 this.session =session;
             }
         }

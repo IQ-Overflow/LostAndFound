@@ -21,7 +21,7 @@ public class UserProfileserviceimpl implements UserProfileservice {
 
     @Override
     public void setUserProfile(User user) {
-        UserProfiledao.setUserProfile(user);
+        userProfiledao.setUserProfile(user);
     }
 
     @Override

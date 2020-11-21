@@ -11,12 +11,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserProfiledao {
     @Insert("insert into user (uID,userName,sex,avatarUrl,country,province,city,language) values (#{uID},#{userName},#{sex},#{avatarUrl},#{country},#{province},#{city},#{language})")
-    static void setUserProfile(User user) {
-    }
+    void setUserProfile(User user);
 
 
     @Select("select * from User where uID=#{id}")
-    abstract User getUserProfile(String id);
+    User getUserProfile(String id);
 
     @Update("UPDATE user SET contact = #{contact} WHERE uID = #{uID}")
     void setUserContact(String uID,String contact);
