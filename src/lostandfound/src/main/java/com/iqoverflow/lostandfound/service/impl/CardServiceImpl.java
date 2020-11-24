@@ -31,4 +31,14 @@ public class CardServiceImpl implements CardService {
     public String getWxByuID(String uID) {
         return cardDao.getWxByuID(uID);
     }
+
+    @Override
+    public void cancelCard(String stuID,Boolean flag){
+        cardDao.cancelCard(stuID,flag,1);
+    }
+
+    @Override
+    public void repostCard(String stuID, Boolean flag) {
+        cardDao.cancelCard(stuID,flag,0);
+    }
 }

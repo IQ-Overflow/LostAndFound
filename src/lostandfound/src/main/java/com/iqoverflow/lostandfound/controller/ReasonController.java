@@ -1,10 +1,13 @@
 package com.iqoverflow.lostandfound.controller;
 
 import com.iqoverflow.lostandfound.domain.Reason;
+import com.iqoverflow.lostandfound.listener.MySessionContext;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -16,10 +19,37 @@ public class ReasonController {
     @Autowired
     ReasonService reasonService;
 
+    private HttpSession session = null;
+
+    @ModelAttribute
+    public ModelAndView index(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        Cookie[] cookies = request.getCookies();
+        HttpSession session = null;
+        if(cookies == null){
+            this.session = request.getSession();
+            System.out.println("没有cookie！");
+            return modelAndView;
+        }
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("JSESSIONID")){
+                System.out.println("获取了session!");
+                session = MySessionContext.getSession(cookie.getValue());
+                this.session =session;
+            }
+        }
+
+        if(this.session == null){
+            this.session = request.getSession();
+        }
+
+        return modelAndView;
+    }
+
     // 同意申请
     @PostMapping("/agreeApplies")
     public Map<String, Object> agreeApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) info.get("fID"));
@@ -42,7 +72,7 @@ public class ReasonController {
     // 拒绝申请
     @PostMapping("/refuseApplies")
     public Map<String, Object> refuseApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) info.get("fID"));
@@ -65,7 +95,7 @@ public class ReasonController {
     // 申请联系
     @PostMapping("/appliesForContact")
     public Map<String, Object> appliesForContact(@RequestBody Map<String, Object> info, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) session.getAttribute("openid"));
@@ -88,8 +118,8 @@ public class ReasonController {
 
     //返回“我申请的”
     @GetMapping("/myApplies")
-    public Reason[] myApplies(HttpServletRequest request){
-        HttpSession session = request.getSession();
+    public Reason[] myApplies(){
+        //HttpSession session = request.getSession();
         String fID = (String)session.getAttribute("openid");
 
         return reasonService.myApplies(fID);
@@ -97,8 +127,8 @@ public class ReasonController {
 
     //返回“向我申请的"
     @GetMapping("/receivedApplies")
-    public Reason[] myReceivedApplies(HttpServletRequest request){
-        HttpSession session = request.getSession();
+    public Reason[] myReceivedApplies(){
+        //HttpSession session = request.getSession();
         String tID = (String)session.getAttribute("openid");
         return reasonService.myReceivedApplies(tID);
     }

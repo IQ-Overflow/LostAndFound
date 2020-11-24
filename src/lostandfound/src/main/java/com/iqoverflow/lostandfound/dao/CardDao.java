@@ -13,8 +13,8 @@ public interface CardDao {
     Card[] findCards();
 
     // 发布卡
-    @Insert("INSERT INTO Card(stuID,college,stuName,uID,flag,time)" +
-            "VALUES( #{stuID} , #{college} , #{stuName} , #{uID} , #{flag}  , #{time}  )")
+    @Insert("INSERT INTO Card(stuID,college,stuName,uID,flag,time,state)" +
+            "VALUES( #{stuID} , #{college} , #{stuName} , #{uID} , #{flag}  , #{time} , 0 )")
     void postCard(Card card);
 
     // 根据ID得到微信联系方式
@@ -26,8 +26,15 @@ public interface CardDao {
     @Results(
             value  ={
             @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
-            @Result(property = "uID", column = "uID")
+            @Result(property = "uID", column = "uID"),
+                    @Result(property = "state" , column = "state")
             }
     )
     Card findCardByInfo(String stuID,String college,String stuName);
+
+    //改变卡的状态
+    @Update("UPDATE card SET state = #{state} WHERE stuID = #{stuID} AND flag = #{flag}")
+    void cancelCard(String stuID,Boolean flag,Integer state);
+
+
 }

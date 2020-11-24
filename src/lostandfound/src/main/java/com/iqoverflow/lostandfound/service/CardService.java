@@ -17,4 +17,10 @@ public interface CardService {
 
     // 根据uID获取微信联系方式
     String getWxByuID(String uID);
+
+    //撤销寻卡贴
+    void cancelCard(String stuID,Boolean flag);
+
+    //恢复寻卡贴
+    void repostCard(String stuID,Boolean flag);
 }

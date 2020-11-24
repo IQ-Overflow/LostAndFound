@@ -69,6 +69,7 @@ Page({
           if(res.data.code == 200) {
             wx.setStorageSync('cookie', res.cookies[0]);
             wx.setStorageSync('userInfo', e.detail.rawData)
+            wx.setStorageSync('openid', res.data.openid)
             app.globalData.userInfo = e.detail.userInfo
             this.setData({
               userInfo: e.detail.userInfo,
