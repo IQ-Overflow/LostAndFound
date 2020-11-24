@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iqoverflow.lostandfound.domain.Card;
 import com.iqoverflow.lostandfound.domain.Message;
 import com.iqoverflow.lostandfound.domain.User;
+import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
 import com.iqoverflow.lostandfound.service.CardService;
 import com.iqoverflow.lostandfound.service.UserProfileservice;
@@ -34,7 +35,7 @@ public class CardController {
     @ModelAttribute
     public ModelAndView index(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        Cookie[] cookies = request.getCookies();
+     /*   Cookie[] cookies = request.getCookies();
         HttpSession session = null;
         if(cookies == null){
             this.session = request.getSession();
@@ -47,7 +48,8 @@ public class CardController {
                 session = MySessionContext.getSession(cookie.getValue());
                 this.session =session;
             }
-        }
+        }*/
+        session = AdminInterceptor.session;
 
         return modelAndView;
     }

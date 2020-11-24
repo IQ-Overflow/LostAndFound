@@ -10,7 +10,16 @@ public class Others {
     private String uID;
     private boolean flag;
     private Timestamp time;
-    // 数据库表里面没有这个字段
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+// 数据库表里面没有这个字段
 //    private String contact;
 
     public int getoID() {

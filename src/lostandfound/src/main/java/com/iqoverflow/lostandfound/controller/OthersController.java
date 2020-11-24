@@ -1,9 +1,11 @@
 package com.iqoverflow.lostandfound.controller;
 
 import com.iqoverflow.lostandfound.domain.Others;
+import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.service.OthersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,17 @@ public class OthersController {
 
     @Autowired
     private OthersService othersService;
+
+    private HttpSession httpSession = null;
+
+    @ModelAttribute
+    public ModelAndView index(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+
+        httpSession = AdminInterceptor.session;
+
+        return modelAndView;
+    }
 
     // 按分页方式返回others
     @PostMapping("/getOthersForPage")
@@ -43,7 +56,7 @@ public class OthersController {
     // 发布物品
     @PostMapping("/publishOthers")
     public Map<String, Object> publishOthers(@RequestBody Map<String, Object> info, HttpServletRequest request) {
-        HttpSession httpSession = request.getSession();
+        //HttpSession httpSession = request.getSession();
         // othersMap转为others对象
         Others others = new Others();
         others.setoID(1);

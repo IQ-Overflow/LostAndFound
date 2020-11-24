@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AdminInterceptor implements HandlerInterceptor {
+
+    public static HttpSession session = null;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        HttpSession session = null;
+
 
         try{
             Cookie[] cookies = request.getCookies();
