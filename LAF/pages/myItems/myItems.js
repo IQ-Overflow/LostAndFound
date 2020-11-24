@@ -13,6 +13,11 @@ Page({
     this.setData({
       mode
     })
+    if(this.data.mode == 'normal') {
+
+    } else {
+      
+    }
   },
 
   /**
