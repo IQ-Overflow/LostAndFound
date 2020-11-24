@@ -5,7 +5,8 @@
             <view class="nickname">昵称</view>
         </view>
         <view class="moreMsg">
-            <text class="type">{{type==='lost'?'丢失':'捡到'}}</text>
+            <!-- <text class="type">{{type==='lost'?'丢失':'捡到'}}</text> -->
+            <text class="type">{{dataItem.flag===false?'丢失':'捡到'}}</text>
             <text class="time">{{dataItem.time}}</text>
         </view>
     </view>
@@ -19,6 +20,6 @@
     </view>
     <view class="func">
         <view class="state">正在进行</view>
-        <view class="apply" bindtap="applyContact" data-id="{{dataItem}}">申请联系</view>
+        <view class="apply" bindtap="applyContact" data-dataItem="{{dataItem}}">申请联系</view>
     </view>
 </view>

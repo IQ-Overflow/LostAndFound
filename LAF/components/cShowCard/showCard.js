@@ -26,8 +26,11 @@ Component({
   methods: {
     applyContact(e){
       // console.log(this.data.dataItem)
-      console.log(e)
-      this.triggerEvent('applyContact')
+      // console.log(e)
+      // console.log(e.currentTarget.dataset.dataitem)
+      let { oID, uID } = e.currentTarget.dataset.dataitem
+      // console.log(oID, uID)
+      this.triggerEvent('applyContact', { oID, uID})
     }
   }
 })

@@ -1,2 +1,4 @@
 <!--pages/apply/apply.wxml-->
-<applyCard></applyCard>
+<block wx:for="{{dataList}}" wx:key="index">
+  <applyCard dataItem="{{item}}"></applyCard>
+</block>

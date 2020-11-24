@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "showCard":"/components/cShowCard/showCard"
+    "showCard":"/components/cShowCard/showCard",
+    "inputToast":"/components/inputToast/inputToast"
   }
 }
