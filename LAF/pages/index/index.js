@@ -1,11 +1,14 @@
 // pages/index/index.js
+import request from '../../utils/request.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    label:'lost'
+    label:'lost',
+    page:1, // 当前页码
+    dataList:[]
   },
   changeTab(e){
     this.setData({
@@ -19,11 +22,26 @@ Page({
       url: '/pages/searchThing/searchThing',
     })
   },
+  getDataList(){
+    request({
+      url:'/others/getOthersForPage',
+      data:{
+        pageNext:this.data.page,
+        pageSize:10
+      },
+      method:'POST'
+    }).then(res=>{
+      this.setData({
+        dataList:res.data
+      })
+      // console.log(res.data)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getDataList()
   },
 
   /**

@@ -6,19 +6,19 @@
         </view>
         <view class="moreMsg">
             <text class="type">{{type==='lost'?'丢失':'捡到'}}</text>
-            <text class="time">2020/11/07 23:50</text>
+            <text class="time">{{dataItem.time}}</text>
         </view>
     </view>
     <view class="cardMsg">
         <view class="text">
-            <view class="num">标题：我是普通丢失的卡片的标题</view>
-            <view class="name">内容：我是普通丢失的卡片的内容</view>
+            <view class="num">标题：{{dataItem.title}}</view>
+            <view class="name">内容：{{dataItem.content}}</view>
             <!-- <view class="college">学院：计算机学院</view> -->
         </view>
         <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
     </view>
     <view class="func">
         <view class="state">正在进行</view>
-        <view class="apply">申请联系</view>
+        <view class="apply" bindtap="applyContact" data-id="{{dataItem}}">申请联系</view>
     </view>
 </view>
