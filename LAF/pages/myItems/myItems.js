@@ -1,11 +1,14 @@
 // pages/myItems/myItems.js
+import request from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    mode: 'normal'
+    mode: 'normal',
+    idCardList: [],
+    normalCardList: []
   },
 
   changeMode(e) {
@@ -20,11 +23,26 @@ Page({
     }
   },
 
+
+  getMyCardList() {
+    request({
+      url: '/whatIFound'
+    })
+    .then(res => {
+      if(res.statusCode == 200) {
+        this.setData({
+          idCardList: res.data[1],
+          normalCardList: res.data[0]
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getMyCardList()
   },
 
   /**
