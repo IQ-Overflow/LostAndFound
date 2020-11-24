@@ -1,6 +1,7 @@
 package com.iqoverflow.lostandfound.controller;
 
 import com.iqoverflow.lostandfound.domain.Reason;
+import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ReasonController {
     @ModelAttribute
     public ModelAndView index(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        Cookie[] cookies = request.getCookies();
+      /*  Cookie[] cookies = request.getCookies();
         HttpSession session = null;
         if(cookies == null){
             this.session = request.getSession();
@@ -41,7 +42,8 @@ public class ReasonController {
 
         if(this.session == null){
             this.session = request.getSession();
-        }
+        }*/
+        session = AdminInterceptor.session;
 
         return modelAndView;
     }
