@@ -19,6 +19,6 @@
     </view>
     <view class="func">
         <view class="state">正在进行</view>
-        <view class="apply">申请联系</view>
+        <view class="apply" bindtap="askForContact">申请联系</view>
     </view>
 </view>
