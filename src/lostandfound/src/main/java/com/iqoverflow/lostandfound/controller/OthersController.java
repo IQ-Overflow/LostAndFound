@@ -44,7 +44,9 @@ public class OthersController {
             pageSize = 1;
         }
         int begin = (pageNext - 1) * pageSize;
-        return othersService.getOthersForPage(begin, pageSize);
+        List<Others> othersList = othersService.getOthersForPage(begin, pageSize);
+        // 返回结果
+        return othersList;
     }
 
     // 获取所有others
@@ -55,7 +57,7 @@ public class OthersController {
 
     // 发布物品
     @PostMapping("/publishOthers")
-    public Map<String, Object> publishOthers(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+    public Map<String, Object> publishOthers(@RequestBody Map<String, Object> info) {
         //HttpSession httpSession = request.getSession();
         // othersMap转为others对象
         Others others = new Others();
