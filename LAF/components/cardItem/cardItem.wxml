@@ -1,7 +1,7 @@
 <view class="card">
     <view class="top">
         <view class="person">
-            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
+            <image class="avatarUrl" src="{{cardMsg.poster && cardMsg.poster.avatarUrl}}"/>
             <view class="nickname">{{cardMsg.poster && cardMsg.poster.userName}}</view>
         </view>
         <view class="moreMsg">
@@ -11,14 +11,24 @@
     </view>
     <view class="cardMsg">
         <view class="text">
-            <view class="num">学号：{{cardMsg.college}}</view>
+            <view class="num">学号：{{cardMsg.stuID}}</view>
             <view class="name">姓名：{{cardMsg.stuName}}</view>
             <view class="college">学院：{{cardMsg.college}}</view>
         </view>
-        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+        <!-- <image class="img" src="" /> -->
     </view>
     <view class="func">
-        <view class="state">正在进行</view>
-        <view class="apply" bindtap="askForContact">申请联系</view>
+        <view class="state" style="color: {{state[cardMsg.state].color}}">{{state[cardMsg.state].name}}</view>
+        <view class="btn">
+            <view class="button delete" wx:if="{{mode == 'self'}}" bindtap="deleteCard">删除</view>
+            <view class="button apply" bindtap="showApply" wx:if="{{mode == 'other'}}">申请联系</view>
+        </view>
+    </view>
+    <view class="apply-input" wx:if="{{showApplyInput}}">
+        <input type="text" class="input" bindblur="getValue" value="{{applyReason}}"/>
+        <view>
+            <view class="button cancel" bindtap="hideApply">取消</view>
+            <view class="button apply" bindtap="askForContact">提交</view>
+        </view>
     </view>
 </view>

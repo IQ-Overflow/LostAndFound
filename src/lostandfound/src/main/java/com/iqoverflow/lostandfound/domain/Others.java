@@ -16,7 +16,7 @@ public class Others {
     private Integer state;//状态。 0：正在进行  1：已结束  2：已删除
     private User poster;//发布人
     // 数据库表里面没有这个字段
-//    private String contact;
+    //private String contact;
 
     public int getoID() {
         return oID;

@@ -73,11 +73,35 @@
 }
 .state{
     font-size: 12px;
-    color: rgb(197, 159, 64);
+    color: #c59f40;
 }
-.apply{
+.button{
     padding: 2px 5px;
     background: #e9b6c2;
     color: white;
     font-size: 14px;
+    display: inline-block;
+}
+.apply{
+    background: #e9b6c2;
+}
+.delete{
+    background: #e66161;
+}
+.cancel{
+    background: rgb(170, 199, 251);
+    margin-right: 3px;
+}
+.apply-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 10px;
+}
+.input{
+    border: solid 1px black;
 }

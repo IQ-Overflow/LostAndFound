@@ -1,13 +1,24 @@
 // pages/apply/apply.js
+import request from '../../utils/request.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    dataList:[]
   },
-
+  //  获取我申请的
+  getDataList(){
+    request({
+      url:'/reason/myApplies'
+    }).then(res=>{
+      console.log(res.data)
+      this.setData({
+        dataList: res.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getDataList()
   },
 
   /**
