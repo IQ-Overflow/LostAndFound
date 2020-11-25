@@ -1,4 +1,5 @@
 // pages/searchThing/searchThing.js
+import request from '../../utils/request.js'
 Page({
 
   /**
@@ -6,7 +7,10 @@ Page({
    */
   data: {
     array: ['捡到', '丢失'],
-    index:0
+    index:0,
+    title:'',
+    content:'',
+    contactMethod:''
   },
 
   /**
@@ -17,8 +21,30 @@ Page({
   },
   bindPickerChange (e) {
     this.data.index = e.detail.value
+    console.log(this.data.index)
     this.setData({
       index: this.data.index
+    })
+  },
+  bindFormSubmit(e){
+    this.data.title = e.detail.value.title
+    this.data.content = e.detail.value.content
+    request({
+      url:'/others/publishOthers',
+      data:{
+        title:this.data.title,
+        content: this.data.content,
+        flag: this.data.index === 0 ? true: false
+      },
+      method:'POST'
+    }).then(res=>{
+      if (res.data.msg==='发布成功'){
+        wx.showToast({
+          title: '发布成功',
+          duration:1000,
+          icon:'success'
+        })
+      }
     })
   },
   /**

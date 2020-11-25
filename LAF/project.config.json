@@ -21,17 +21,17 @@
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
 		"compileHotReLoad": false,
-		"useMultiFrameRuntime": false,
-		"useApiHook": true,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"enableEngineNative": false,
 		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"enableEngineNative": false,
 		"packNpmManually": false,
 		"packNpmRelationList": [],
 		"minifyWXSS": true
@@ -119,6 +119,12 @@
 					"name": "向我提交的申请",
 					"pathName": "pages/applied/applied",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
 					"scene": null
 				}
 			]

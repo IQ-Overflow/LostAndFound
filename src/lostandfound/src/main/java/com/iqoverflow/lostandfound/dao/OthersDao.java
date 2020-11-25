@@ -1,9 +1,7 @@
 package com.iqoverflow.lostandfound.dao;
 
 import com.iqoverflow.lostandfound.domain.Others;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,11 +11,25 @@ import java.util.List;
 public interface OthersDao {
 
     // 按分页方式查询others
-    @Select("select oID, title, content, pic, uID, flag, time from others limit #{begin}, #{pageSize}")
+    @Select("select oID, title, content, pic, uID, flag, time, state from others limit #{begin}, #{pageSize}")
+    @Results(
+            value = {
+                    @Result(property = "poster", column = "uID", one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "uID", column = "uID"),
+                    @Result(property = "state", column = "state")
+            }
+    )
     List<Others> selectOthersForPage(int begin, int pageSize);
 
     // 查询所有others
     @Select("select * from others")
+    @Results(
+            value = {
+                    @Result(property = "poster", column = "uID", one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "uID", column = "uID"),
+                    @Result(property = "state", column = "state")
+            }
+    )
     List<Others> selectOthersList();
 
     // 插入others

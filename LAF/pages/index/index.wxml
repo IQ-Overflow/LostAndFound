@@ -12,11 +12,13 @@
 
   </view>
   <view wx:if="{{label==='lost'}}">
-    <showCard></showCard>
+    <block wx:for="{{dataList}}" wx:key="index">
+      <showCard dataItem="{{item}}" bind:applyContact="applyContact"></showCard>
+    </block>
   </view>
-  <view wx:if="{{label==='get'}}">
-    <showCard type='get'></showCard>
-    <showCard type='get'></showCard>
-  </view>
+  <!-- <view wx:if="{{label==='get'}}">
+    <showCard type='get' ></showCard>
+  </view> -->
   <image src="../../images/add.png" class="add" bindtap="add"></image>
 </view>
+<inputToast isShowConfirm="{{isToastShow}}" bind:clickSureBtn="clickSureBtn"></inputToast>

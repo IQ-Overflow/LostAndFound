@@ -7,6 +7,9 @@ Component({
     type:{
       type:String,
       value:'lost'
+    },
+    dataItem:{
+      type:Object
     }
   },
 
@@ -21,6 +24,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    applyContact(e){
+      // console.log(this.data.dataItem)
+      // console.log(e)
+      // console.log(e.currentTarget.dataset.dataitem)
+      let { oID, uID } = e.currentTarget.dataset.dataitem
+      // console.log(oID, uID)
+      this.triggerEvent('applyContact', { oID, uID})
+    }
   }
 })

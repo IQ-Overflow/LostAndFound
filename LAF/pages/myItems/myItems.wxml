@@ -3,4 +3,8 @@
     <view class="card {{mode=='card'?'selected':'none'}}" bindtap="changeMode" data-mode="card">学生卡</view>
 </view>
 <normal-items style="display:{{mode=='normal'?'block':'none'}}"></normal-items>
-<card-items style="display:{{mode=='card'?'block':'none'}}"></card-items>
+<card-item 
+    style="display:{{mode=='card'?'block':'none'}}"
+    wx:for="{{idCardList}}"
+    cardMsg="{{item}}"
+></card-item>

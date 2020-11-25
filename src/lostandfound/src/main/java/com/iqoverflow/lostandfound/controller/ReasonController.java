@@ -50,7 +50,7 @@ public class ReasonController {
 
     // 同意申请
     @PostMapping("/agreeApplies")
-    public Map<String, Object> agreeApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+    public Map<String, Object> agreeApplies(@RequestBody Map<String, Object> info) {
         //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
@@ -73,7 +73,7 @@ public class ReasonController {
 
     // 拒绝申请
     @PostMapping("/refuseApplies")
-    public Map<String, Object> refuseApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+    public Map<String, Object> refuseApplies(@RequestBody Map<String, Object> info) {
         //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
@@ -96,7 +96,7 @@ public class ReasonController {
 
     // 申请联系
     @PostMapping("/appliesForContact")
-    public Map<String, Object> appliesForContact(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+    public Map<String, Object> appliesForContact(@RequestBody Map<String, Object> info) {
         //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
