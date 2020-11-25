@@ -23,4 +23,7 @@ public interface CardService {
 
     //恢复寻卡贴
     void repostCard(String stuID,Boolean flag);
+
+    //删除寻卡贴
+    void deleteCard(String stuID,Boolean flag);
 }

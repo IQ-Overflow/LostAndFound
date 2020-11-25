@@ -18,4 +18,7 @@ public interface ReasonService {
 
     // 查询tID收到的申请
     Reason[] myReceivedApplies(String tID);
+
+    // 查找“我申请”的某个物品
+    Reason selectMyApplyBypID(String pID , String fID);
 }

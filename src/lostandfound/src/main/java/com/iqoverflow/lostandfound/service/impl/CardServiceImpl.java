@@ -41,4 +41,11 @@ public class CardServiceImpl implements CardService {
     public void repostCard(String stuID, Boolean flag) {
         cardDao.cancelCard(stuID,flag,0);
     }
+
+    @Override
+    public void deleteCard(String stuID, Boolean flag) {
+        cardDao.cancelCard(stuID,flag,2);
+    }
+
+
 }

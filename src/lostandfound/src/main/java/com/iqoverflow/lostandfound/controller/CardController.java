@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iqoverflow.lostandfound.domain.Card;
 import com.iqoverflow.lostandfound.domain.Message;
+import com.iqoverflow.lostandfound.domain.Reason;
 import com.iqoverflow.lostandfound.domain.User;
 import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
 import com.iqoverflow.lostandfound.service.CardService;
+import com.iqoverflow.lostandfound.service.ReasonService;
 import com.iqoverflow.lostandfound.service.UserProfileservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,25 +32,15 @@ public class CardController {
     @Autowired
     UserProfileservice userProfileservice;
 
+    @Autowired
+    ReasonService reasonService;
+
     private HttpSession session = null;
 
     @ModelAttribute
     public ModelAndView index(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-     /*   Cookie[] cookies = request.getCookies();
-        HttpSession session = null;
-        if(cookies == null){
-            this.session = request.getSession();
-            System.out.println("没有cookie！");
-            return modelAndView;
-        }
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals("JSESSIONID")){
-                System.out.println("获取了session!");
-                session = MySessionContext.getSession(cookie.getValue());
-                this.session =session;
-            }
-        }*/
+
         session = AdminInterceptor.session;
 
         return modelAndView;
@@ -134,17 +126,28 @@ public class CardController {
     @PostMapping("/searchCard")
     public Message searchcard(@RequestBody Map<String,Object> info){
 
+        Message msg;
+
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
         String stuName = (String)info.get("stuName");
         Card card = cardService.findCardByInfo(stuID, college, stuName);
 
 
-        Message msg;
 
-        if(null == card){//输入的学生卡错误或不匹配
+        if(null == card){// 输入的学生卡错误或不匹配或已删除
+
             msg = new Message(false,card);
+
         }else {
+
+            String fID = (String) this.session.getAttribute("openid");
+            String pID = card.getStuID();
+            Reason reason = reasonService.selectMyApplyBypID(pID, fID);
+
+            // reason 为 null 则表示用户还没申请联系
+
+
             msg = new Message(true,card);
         }
 

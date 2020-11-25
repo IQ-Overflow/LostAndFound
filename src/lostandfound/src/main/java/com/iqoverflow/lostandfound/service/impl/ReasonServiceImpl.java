@@ -40,4 +40,10 @@ public class ReasonServiceImpl implements ReasonService {
     public Reason[] myReceivedApplies(String tID) {
         return  reasonDao.selectReceivedAppliesOftID(tID);
     }
+
+
+    @Override
+    public Reason selectMyApplyBypID(String pID, String fID) {
+        return reasonDao.selectMyApplyBypID(pID,fID);
+    }
 }
