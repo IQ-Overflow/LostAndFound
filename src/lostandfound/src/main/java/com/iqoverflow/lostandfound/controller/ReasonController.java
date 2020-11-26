@@ -142,9 +142,9 @@ public class ReasonController {
 
     //返回“我申请的”
     @GetMapping("/myApplies")
-    public Reason[] myApplies(String fID){
+    public Reason[] myApplies(){
 
-        //String fID = (String)session.getAttribute("openid");
+        String fID = (String)session.getAttribute("openid");
         Reason[] reasons = applies(fID,false);
 
         return reasons;
@@ -152,9 +152,9 @@ public class ReasonController {
 
     //返回“向我申请的"
     @GetMapping("/receivedApplies")
-    public Reason[] myReceivedApplies(String tID){
+    public Reason[] myReceivedApplies(){
 
-        //String tID = (String)session.getAttribute("openid");
+        String tID = (String)session.getAttribute("openid");
         Reason[] reasons = applies(tID,true);
 
         return reasons;
