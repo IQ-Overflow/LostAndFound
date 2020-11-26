@@ -2,3 +2,8 @@
 <block wx:for="{{dataList}}" wx:key="index">
   <applyCard dataItem="{{item}}"></applyCard>
 </block>
+<block wx:if="{{dataList.length===0}}">
+  <view class="no-container">
+  你目前没有提交申请哦
+  </view>
+</block>

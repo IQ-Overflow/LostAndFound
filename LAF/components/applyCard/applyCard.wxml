@@ -9,11 +9,16 @@
     </view>
   </view>
   <view class="cardMsg">
-    <view class="text">
-      <view class="num">我是标题噢噢噢噢噢噢</view>
-      <view class="name">我是内容啦</view>
+    <view class="text" wx:if="{{dataItem.type===1}}">
+      <view class="num">标题: {{dataItem.object.title}}</view>
+      <view class="name">内容: {{dataItem.object.content}}</view>
     </view>
-    <image class="img" src="../../images/head-img.jpg" />
+    <image class="img" src="{{dataItem.object.pic}}" wx:if="{{dataItem.type===1}}" />
+    <view class="text" wx:if="{{dataItem.type===0}}">
+      <view class="num">学号: {{dataItem.object.stuID}}</view>
+      <view class="name">姓名: {{dataItem.object.stuName}}</view>
+      <view class="college">学院: {{dataItem.object.college}}</view>
+    </view>
   </view>
   <view class="func" wx:if="{{dataItem.state==0}}">
     <view class="state">正在进行</view>

@@ -6,13 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    dataList:[]
   },
   getDataList(){
     request({
       url:'/reason/receivedApplies'
     }).then(res=>{
-      console.log(res)
+      // console.log(res)
+      this.setData({
+        dataList:res.data
+      })
     })
   },
   /**
