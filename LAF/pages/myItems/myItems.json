@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "normal-items": "./normalItems/normalItems",
-    "card-items": "./cardItems/cardItems"
+    "normal-items": "../../components/cShowCard/showCard",
+    "card-item": "../../components/cardItem/cardItem"
   }
 }

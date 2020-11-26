@@ -18,7 +18,7 @@ public class OthersDaoTest {
 
     @Test
     public void selectOthersForPageTest() {
-        List<Others> othersList = othersDao.selectOthersForPage(0, 3);
+        List<Others> othersList = othersDao.selectOthersForPage(1, 3);
         for (Others others : othersList) {
             System.out.println(others);
         }

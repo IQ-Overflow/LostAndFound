@@ -17,7 +17,6 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 
-
         try{
             Cookie[] cookies = request.getCookies();
 

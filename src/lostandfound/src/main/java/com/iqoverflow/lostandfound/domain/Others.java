@@ -1,5 +1,7 @@
 package com.iqoverflow.lostandfound.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 public class Others {
@@ -9,18 +11,12 @@ public class Others {
     private String pic;
     private String uID;
     private boolean flag;
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp time;
-    private String state;
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-// 数据库表里面没有这个字段
-//    private String contact;
+    private Integer state;//状态。 0：正在进行  1：已结束  2：已删除
+    private User poster;//发布人
+    // 数据库表里面没有这个字段
+    //private String contact;
 
     public int getoID() {
         return oID;
@@ -78,6 +74,22 @@ public class Others {
         this.time = time;
     }
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public User getPoster() {
+        return poster;
+    }
+
+    public void setPoster(User poster) {
+        this.poster = poster;
+    }
+
     @Override
     public String toString() {
         return "Others{" +
@@ -88,6 +100,8 @@ public class Others {
                 ", uID='" + uID + '\'' +
                 ", flag=" + flag +
                 ", time=" + time +
+                ", state=" + state +
+                ", poster=" + poster +
                 '}';
     }
 }

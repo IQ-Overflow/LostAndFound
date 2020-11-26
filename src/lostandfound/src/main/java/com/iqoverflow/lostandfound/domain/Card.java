@@ -13,7 +13,7 @@ public class Card {
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp time;
     private User poster;//发布人
-    private Integer state;//状态。 0：正在进行  1：已结束
+    private Integer state;//状态。 0：正在进行  1：已结束  2:已删除
 
     public Integer getState() {
         return state;

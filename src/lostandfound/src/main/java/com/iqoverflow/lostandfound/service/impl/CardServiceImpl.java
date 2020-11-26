@@ -22,6 +22,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public Card findCardBystuID(String stuID) {
+        return cardDao.findCardBystuID(stuID);
+    }
+
+    @Override
     public Card findCardByInfo(String stuID, String college, String stuName) {
         Card card = cardDao.findCardByInfo(stuID,college,stuName);
         return card;
@@ -41,4 +46,11 @@ public class CardServiceImpl implements CardService {
     public void repostCard(String stuID, Boolean flag) {
         cardDao.cancelCard(stuID,flag,0);
     }
+
+    @Override
+    public void deleteCard(String stuID, Boolean flag) {
+        cardDao.cancelCard(stuID,flag,2);
+    }
+
+
 }

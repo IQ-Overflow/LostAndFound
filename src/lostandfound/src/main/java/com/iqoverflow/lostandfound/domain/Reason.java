@@ -6,6 +6,26 @@ public class Reason {
     private String tID;//被申请人的uID
     private String message;//申请理由
     private Integer state;//申请状态.0：进行中  1：已同意  2：已拒绝
+    private Integer type;//物品类型，0 为卡，1 为物品
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    private Object object;//物品
+
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
 
     @Override
     public String toString() {

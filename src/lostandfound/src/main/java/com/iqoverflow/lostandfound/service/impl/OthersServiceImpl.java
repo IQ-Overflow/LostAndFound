@@ -15,6 +15,12 @@ public class OthersServiceImpl implements OthersService {
     @Autowired
     private OthersDao othersDao;
 
+    // 删除已发布的物品
+    @Override
+    public int removeOthers(Others others) {
+        return othersDao.updateOthersState(others);
+    }
+
     // 按分页方式展示others信息
     @Override
     public List<Others> getOthersForPage(int begin, int pageSize) {
@@ -31,6 +37,11 @@ public class OthersServiceImpl implements OthersService {
     @Override
     public int publishOthers(Others others) {
         return othersDao.insertOthers(others);
+    }
+
+    @Override
+    public Others selectObjectByoID(Integer oID) {
+        return othersDao.selectObjectByoID(oID);
     }
 
 

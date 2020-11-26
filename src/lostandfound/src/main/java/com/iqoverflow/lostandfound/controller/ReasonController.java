@@ -1,8 +1,12 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.domain.Reason;
 import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
+import com.iqoverflow.lostandfound.service.CardService;
+import com.iqoverflow.lostandfound.service.OthersService;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,12 @@ import java.util.Map;
 public class ReasonController {
     @Autowired
     ReasonService reasonService;
+
+    @Autowired
+    CardService cardService;
+
+    @Autowired
+    OthersService othersService;
 
     private HttpSession session = null;
 
@@ -52,20 +62,23 @@ public class ReasonController {
     @PostMapping("/agreeApplies")
     public Map<String, Object> agreeApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
         //HttpSession session = request.getSession();
+        if (this.session == null) {
+            this.session = request.getSession();
+        }
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) info.get("fID"));
         reason.setState(1);
-        reason.settID((String) session.getAttribute("openid"));
+        reason.settID((String) this.session.getAttribute("openid"));
         reason.setMessage("");
         int result = reasonService.agreeApplies(reason);
         // 返回发布结果
         Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            map.put("code",1);
+            map.put("code", 1);
             map.put("msg", "已同意");
         } else {
-            map.put("code",0);
+            map.put("code", 0);
             map.put("msg", "同意失败，请稍后重试");
         }
         return map;
@@ -74,21 +87,24 @@ public class ReasonController {
     // 拒绝申请
     @PostMapping("/refuseApplies")
     public Map<String, Object> refuseApplies(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+        if (this.session == null) {
+            this.session = request.getSession();
+        }
         //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) info.get("fID"));
         reason.setState(2);
-        reason.settID((String) session.getAttribute("openid"));
+        reason.settID((String) this.session.getAttribute("openid"));
         reason.setMessage("");
         int result = reasonService.refuseApplies(reason);
         // 返回发布结果
         Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            map.put("code",1);
+            map.put("code", 1);
             map.put("msg", "已拒绝");
         } else {
-            map.put("code",0);
+            map.put("code", 0);
             map.put("msg", "拒绝失败，请稍后重试");
         }
         return map;
@@ -97,10 +113,13 @@ public class ReasonController {
     // 申请联系
     @PostMapping("/appliesForContact")
     public Map<String, Object> appliesForContact(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+        if (this.session == null) {
+            this.session = request.getSession();
+        }
         //HttpSession session = request.getSession();
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
-        reason.setfID((String) session.getAttribute("openid"));
+        reason.setfID((String) this.session.getAttribute("openid"));
         reason.settID((String) info.get("tID"));
         reason.setMessage((String) info.get("message"));
         reason.setState(0);
@@ -109,10 +128,10 @@ public class ReasonController {
         // 返回发布结果
         Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            map.put("code",1);
+            map.put("code", 1);
             map.put("msg", "发布申请成功");
         } else {
-            map.put("code",0);
+            map.put("code", 0);
             map.put("msg", "发布申请失败");
         }
         return map;
@@ -121,18 +140,67 @@ public class ReasonController {
     //返回“我申请的”
     @GetMapping("/myApplies")
     public Reason[] myApplies(){
-        //HttpSession session = request.getSession();
-        String fID = (String)session.getAttribute("openid");
 
-        return reasonService.myApplies(fID);
+        String fID = (String)session.getAttribute("openid");
+        Reason[] reasons = applies(fID,false);
+
+        return reasons;
     }
 
     //返回“向我申请的"
     @GetMapping("/receivedApplies")
     public Reason[] myReceivedApplies(){
-        //HttpSession session = request.getSession();
+
         String tID = (String)session.getAttribute("openid");
-        return reasonService.myReceivedApplies(tID);
+        Reason[] reasons = applies(tID,true);
+
+        return reasons;
+
+    }
+
+    private Reason[] applies(String ID ,Boolean tFlag){
+
+   /*     String tID = (String)session.getAttribute("openid");
+        return reasonService.myReceivedApplies(tID);*/
+        Reason[] reasons = null;
+        if (true == tFlag){
+            reasons = reasonService.myReceivedApplies(ID);
+        }else {
+            reasons = reasonService.myApplies(ID);
+        }
+        Card card = null;
+        Others others = null;
+
+        for(Reason reason : reasons){
+            String pID = reason.getpID();
+            card = cardService.findCardBystuID(pID);
+            try{
+                others = othersService.selectObjectByoID(Integer.parseInt(pID));
+            }catch (Exception e){
+                others = null;
+            }
+
+
+            if(card != null){
+
+                reason.setObject(card);
+                reason.setType(0);
+
+            }else if (others != null){
+
+                reason.setObject(others);
+                reason.setType(1);
+
+            }else {
+
+                reason.setObject(null);
+                reason.setType(null);
+
+            }
+        }
+
+        return reasons;
+
     }
 
 
