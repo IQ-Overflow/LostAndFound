@@ -3,6 +3,7 @@ package com.iqoverflow.lostandfound.controller;
 import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.service.OthersService;
+import com.iqoverflow.lostandfound.service.UserProfileservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,9 @@ public class OthersController {
 
     @Autowired
     private OthersService othersService;
+
+    @Autowired
+    private UserProfileservice userProfileservice;
 
     private HttpSession session = null;
 
@@ -85,18 +89,21 @@ public class OthersController {
             this.session = request.getSession();
         }
         //HttpSession httpSession = request.getSession();
-        // othersMap转为others对象
+        // 获取前端数据
         Others others = new Others();
         others.setoID(1);
         others.setTitle((String) info.get("title"));
         others.setContent((String) info.get("content"));
         others.setPic("nopic");
         // 获取用户id
-        others.setuID((String) this.session.getAttribute("openid"));
+        String uid = (String) this.session.getAttribute("openid");
+        String contact = (String) info.get("contact");
+        others.setuID(uid);
         others.setFlag((Boolean) info.get("flag"));
         others.setTime(new Timestamp(System.currentTimeMillis()));
         others.setState(0);
         // 发布物品信息
+        userProfileservice.setUserContact(uid, contact);
         int result = othersService.publishOthers(others);
         // 返回发布结果
         Map<String, Object> map = new HashMap<>();
