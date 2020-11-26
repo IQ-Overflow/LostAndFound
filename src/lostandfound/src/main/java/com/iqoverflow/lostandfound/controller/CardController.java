@@ -124,34 +124,68 @@ public class CardController {
 
     //根据信息找卡
     @PostMapping("/searchCard")
-    public Message searchcard(@RequestBody Map<String,Object> info){
+    public  Map<String,Object> searchcard(@RequestBody Map<String,Object> info){
 
-        Message msg;
+        //Message msg;
+        Map<String,Object> resultMap = new HashMap<>();
 
         String stuID = (String)info.get("stuID");
         String college = (String)info.get("college");
         String stuName = (String)info.get("stuName");
         Card card = cardService.findCardByInfo(stuID, college, stuName);
-
+        Boolean flag = false; // 是否存在该卡
+        Boolean isApplied = false; // 用户是否申请过联系
+        Boolean isDeleted = false; // 卡是否已删除
 
 
         if(null == card){// 输入的学生卡错误或不匹配或已删除
 
-            msg = new Message(false,card);
+            //msg = new Message(false,card);
+            flag = false;
+            isApplied = false;
+
 
         }else {
 
             String fID = (String) this.session.getAttribute("openid");
+            //String fID = (String)info.get("fID");
             String pID = card.getStuID();
             Reason reason = reasonService.selectMyApplyBypID(pID, fID);
-
+            flag = true;
+            System.out.println("fID:" + fID + "   uID:" + card.getuID());
+            isDeleted = card.getState() == 1?true:false;
             // reason 为 null 则表示用户还没申请联系
+            if (card.getuID().equals(fID)){
+                isApplied = false;
+                System.out.println("本人查找，可返回卡。");
+            }
+            else if (null != reason   ){ // 已申请
+                isApplied = true;
+                System.out.println("用户早已申请了卡，可以返回卡");
+
+            }else { // 未申请
+                isApplied = false;
+
+                if(card.getState() == 1){ // 卡已被删除
+                    isDeleted = true;
+                    card = null;
+                    System.out.println("卡已被删除了" );
+                }else {
+                    System.out.println("卡还在");
+                }
+            }
 
 
-            msg = new Message(true,card);
+           //msg = new Message(true,card);
         }
 
-        return msg;
+        resultMap.put("flag",flag);
+        resultMap.put("isDeleted",isDeleted);
+        resultMap.put("isApplied",isApplied);
+        resultMap.put("msg",card);
+
+        //return msg;
+        return resultMap;
     }
 
     //根据uID获取微信
