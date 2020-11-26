@@ -1,5 +1,6 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.iqoverflow.lostandfound.dao.UserProfiledao;
 import com.iqoverflow.lostandfound.domain.Card;
 import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.domain.Reason;
@@ -30,6 +31,8 @@ public class ReasonController {
     @Autowired
     OthersService othersService;
 
+    @Autowired
+    UserProfiledao userProfiledao;
     private HttpSession session = null;
 
     @ModelAttribute
@@ -139,9 +142,9 @@ public class ReasonController {
 
     //返回“我申请的”
     @GetMapping("/myApplies")
-    public Reason[] myApplies(){
+    public Reason[] myApplies(String fID){
 
-        String fID = (String)session.getAttribute("openid");
+        //String fID = (String)session.getAttribute("openid");
         Reason[] reasons = applies(fID,false);
 
         return reasons;
@@ -149,9 +152,9 @@ public class ReasonController {
 
     //返回“向我申请的"
     @GetMapping("/receivedApplies")
-    public Reason[] myReceivedApplies(){
+    public Reason[] myReceivedApplies(String tID){
 
-        String tID = (String)session.getAttribute("openid");
+        //String tID = (String)session.getAttribute("openid");
         Reason[] reasons = applies(tID,true);
 
         return reasons;
@@ -160,8 +163,8 @@ public class ReasonController {
 
     private Reason[] applies(String ID ,Boolean tFlag){
 
-   /*     String tID = (String)session.getAttribute("openid");
-        return reasonService.myReceivedApplies(tID);*/
+/*     String tID = (String)session.getAttribute("openid");
+     return reasonService.myReceivedApplies(tID);*/
         Reason[] reasons = null;
         if (true == tFlag){
             reasons = reasonService.myReceivedApplies(ID);
@@ -197,6 +200,34 @@ public class ReasonController {
                 reason.setType(null);
 
             }
+
+            Integer state = reason.getState();
+
+            if (true == tFlag){ // 向我申请的
+
+                if( state == 1 ){ // 申请已同意
+
+                    //reason.setMsg(null);
+
+                }else if (state == 2){ // 申请已拒绝
+
+                }
+
+            }else { // 我申请的
+
+                if( state == 1 ){ // 申请已同意
+
+                    String tID = reason.gettID();
+                    String contact = userProfiledao.getUserProfile(tID).getContact();
+                    reason.setMsg(contact);
+
+                }else if (state == 2){ // 申请已拒绝
+
+                }
+
+            }
+
+
         }
 
         return reasons;

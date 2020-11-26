@@ -7,7 +7,15 @@ public class Reason {
     private String message;//申请理由
     private Integer state;//申请状态.0：进行中  1：已同意  2：已拒绝
     private Integer type;//物品类型，0 为卡，1 为物品
+    private String msg;//申请的返回消息，若 state 为 1，返回联系方式。 若 state 为2，返回拒绝理由。
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
     public Integer getType() {
         return type;
     }
