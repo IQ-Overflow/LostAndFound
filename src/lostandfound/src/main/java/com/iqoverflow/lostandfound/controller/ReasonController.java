@@ -1,8 +1,12 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.domain.Reason;
 import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
+import com.iqoverflow.lostandfound.service.CardService;
+import com.iqoverflow.lostandfound.service.OthersService;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,12 @@ import java.util.Map;
 public class ReasonController {
     @Autowired
     ReasonService reasonService;
+
+    @Autowired
+    CardService cardService;
+
+    @Autowired
+    OthersService othersService;
 
     private HttpSession session = null;
 
@@ -130,18 +140,67 @@ public class ReasonController {
     //返回“我申请的”
     @GetMapping("/myApplies")
     public Reason[] myApplies(){
-        //HttpSession session = request.getSession();
-        String fID = (String)session.getAttribute("openid");
 
-        return reasonService.myApplies(fID);
+        String fID = (String)session.getAttribute("openid");
+        Reason[] reasons = applies(fID,false);
+
+        return reasons;
     }
 
     //返回“向我申请的"
     @GetMapping("/receivedApplies")
     public Reason[] myReceivedApplies(){
-        //HttpSession session = request.getSession();
+
         String tID = (String)session.getAttribute("openid");
-        return reasonService.myReceivedApplies(tID);
+        Reason[] reasons = applies(tID,true);
+
+        return reasons;
+
+    }
+
+    private Reason[] applies(String ID ,Boolean tFlag){
+
+   /*     String tID = (String)session.getAttribute("openid");
+        return reasonService.myReceivedApplies(tID);*/
+        Reason[] reasons = null;
+        if (true == tFlag){
+            reasons = reasonService.myReceivedApplies(ID);
+        }else {
+            reasons = reasonService.myApplies(ID);
+        }
+        Card card = null;
+        Others others = null;
+
+        for(Reason reason : reasons){
+            String pID = reason.getpID();
+            card = cardService.findCardBystuID(pID);
+            try{
+                others = othersService.selectObjectByoID(Integer.parseInt(pID));
+            }catch (Exception e){
+                others = null;
+            }
+
+
+            if(card != null){
+
+                reason.setObject(card);
+                reason.setType(0);
+
+            }else if (others != null){
+
+                reason.setObject(others);
+                reason.setType(1);
+
+            }else {
+
+                reason.setObject(null);
+                reason.setType(null);
+
+            }
+        }
+
+        return reasons;
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.iqoverflow.lostandfound.service;
 
 import com.iqoverflow.lostandfound.domain.Card;
+import org.apache.ibatis.annotations.Select;
 
 import java.sql.Timestamp;
 
@@ -11,6 +12,9 @@ public interface CardService {
 
     // 发布卡
     void postCard(Card card);
+
+    //根据学号寻卡
+    Card findCardBystuID(String stuID);
 
     // 根据信息找卡
     Card findCardByInfo(String stuID,String college,String stuName);
@@ -23,4 +27,7 @@ public interface CardService {
 
     //恢复寻卡贴
     void repostCard(String stuID,Boolean flag);
+
+    //删除寻卡贴
+    void deleteCard(String stuID,Boolean flag);
 }

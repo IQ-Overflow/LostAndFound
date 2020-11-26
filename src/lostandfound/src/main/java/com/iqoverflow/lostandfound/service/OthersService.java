@@ -1,6 +1,7 @@
 package com.iqoverflow.lostandfound.service;
 
 import com.iqoverflow.lostandfound.domain.Others;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,5 +19,6 @@ public interface OthersService {
     // 发布物品
     int publishOthers(Others others);
 
-
+    // 根据oID找Others
+    Others selectObjectByoID(Integer oID);
 }

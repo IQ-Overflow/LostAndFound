@@ -39,5 +39,10 @@ public class OthersServiceImpl implements OthersService {
         return othersDao.insertOthers(others);
     }
 
+    @Override
+    public Others selectObjectByoID(Integer oID) {
+        return othersDao.selectObjectByoID(oID);
+    }
+
 
 }

@@ -28,4 +28,8 @@ public interface ReasonDao {
     @Select("SELECT * FROM reason WHERE tID = #{tID}")
     Reason[] selectReceivedAppliesOftID(String tID);
 
+    // 查找“我申请”的某个物品
+    @Select("SELECT * FROM reason WHERE pID = #{pID} AND fID = #{fID} ")
+    Reason selectMyApplyBypID(String pID , String fID);
+
 }
