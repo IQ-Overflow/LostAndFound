@@ -1,6 +1,8 @@
 package com.iqoverflow.lostandfound.service.impl;
 
 import com.iqoverflow.lostandfound.dao.ReasonDao;
+import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.domain.Reason;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +48,6 @@ public class ReasonServiceImpl implements ReasonService {
     public Reason selectMyApplyBypID(String pID, String fID) {
         return reasonDao.selectMyApplyBypID(pID,fID);
     }
+
+
 }

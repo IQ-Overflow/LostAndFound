@@ -130,42 +130,68 @@ public class ReasonController {
 
     //返回“我申请的”
     @GetMapping("/myApplies")
-    public Reason[] myApplies(String fID){
-        //HttpSession session = request.getSession();
-        //String fID = (String)session.getAttribute("openid");
-        Reason[] reasons = reasonService.myApplies(fID);
+    public Reason[] myApplies(){
+
+        String fID = (String)session.getAttribute("openid");
+        Reason[] reasons = applies(fID,false);
+
+        return reasons;
+    }
+
+    //返回“向我申请的"
+    @GetMapping("/receivedApplies")
+    public Reason[] myReceivedApplies(){
+
+        String tID = (String)session.getAttribute("openid");
+        Reason[] reasons = applies(tID,true);
+
+        return reasons;
+
+    }
+
+    private Reason[] applies(String ID ,Boolean tFlag){
+
+   /*     String tID = (String)session.getAttribute("openid");
+        return reasonService.myReceivedApplies(tID);*/
+        Reason[] reasons = null;
+        if (true == tFlag){
+            reasons = reasonService.myReceivedApplies(ID);
+        }else {
+            reasons = reasonService.myApplies(ID);
+        }
         Card card = null;
         Others others = null;
 
         for(Reason reason : reasons){
             String pID = reason.getpID();
             card = cardService.findCardBystuID(pID);
-            others = othersService.selectObjectByoID(Integer.parseInt(pID));
+            try{
+                others = othersService.selectObjectByoID(Integer.parseInt(pID));
+            }catch (Exception e){
+                others = null;
+            }
+
 
             if(card != null){
 
                 reason.setObject(card);
+                reason.setType(0);
 
             }else if (others != null){
 
                 reason.setObject(others);
+                reason.setType(1);
 
             }else {
 
                 reason.setObject(null);
+                reason.setType(null);
 
             }
         }
 
-        return null;
-    }
+        return reasons;
 
-    //返回“向我申请的"
-    @GetMapping("/receivedApplies")
-    public Reason[] myReceivedApplies(){
-        //HttpSession session = request.getSession();
-        String tID = (String)session.getAttribute("openid");
-        return reasonService.myReceivedApplies(tID);
     }
 
 

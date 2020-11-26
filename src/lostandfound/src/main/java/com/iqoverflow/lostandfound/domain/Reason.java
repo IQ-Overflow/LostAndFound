@@ -6,13 +6,13 @@ public class Reason {
     private String tID;//被申请人的uID
     private String message;//申请理由
     private Integer state;//申请状态.0：进行中  1：已同意  2：已拒绝
-    private Boolean type;//物品类型，true 为卡，false 为物品
+    private Integer type;//物品类型，0 为卡，1 为物品
 
-    public Boolean getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Boolean type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
