@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface OthersService {
 
+    // 删除已发布的物品
+    int removeOthers(Others others);
+
     // 按分页方式展示others信息
     List<Others> getOthersForPage(int begin, int pageSize);
 

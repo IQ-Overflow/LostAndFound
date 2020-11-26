@@ -21,18 +21,41 @@ public class OthersController {
     @Autowired
     private OthersService othersService;
 
-    private HttpSession httpSession = null;
+    private HttpSession session = null;
 
     @ModelAttribute
     public ModelAndView index(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
 
-        httpSession = AdminInterceptor.session;
+        session = AdminInterceptor.session;
 
         return modelAndView;
     }
 
-    // 按分页方式返回others
+    // 删除已发布的物品
+    @PostMapping("/removeOthers")
+    public Map<String, Object> removeOthers(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+        if (this.session == null) {
+            this.session = request.getSession();
+        }
+        Others others = new Others();
+        others.setoID((Integer) info.get("oID"));
+        others.setuID((String) this.session.getAttribute("openid"));
+        others.setState(2);
+        int result = othersService.removeOthers(others);
+        // 返回删除的结果
+        Map<String, Object> map = new HashMap<>();
+        if (result == 1) {
+            map.put("code", 1);
+            map.put("msg", "删除成功");
+        } else {
+            map.put("code", 0);
+            map.put("msg", "删除失败");
+        }
+        return map;
+    }
+
+    // 按分页方式返回未删除的others
     @PostMapping("/getOthersForPage")
     public List<Others> getOthersForPage(@RequestBody Map<String, Object> info) {
         int pageNext = (int) info.get("pageNext");
@@ -57,7 +80,10 @@ public class OthersController {
 
     // 发布物品
     @PostMapping("/publishOthers")
-    public Map<String, Object> publishOthers(@RequestBody Map<String, Object> info) {
+    public Map<String, Object> publishOthers(@RequestBody Map<String, Object> info, HttpServletRequest request) {
+        if (this.session == null) {
+            this.session = request.getSession();
+        }
         //HttpSession httpSession = request.getSession();
         // othersMap转为others对象
         Others others = new Others();
@@ -66,18 +92,19 @@ public class OthersController {
         others.setContent((String) info.get("content"));
         others.setPic("nopic");
         // 获取用户id
-        others.setuID((String) httpSession.getAttribute("openid"));
+        others.setuID((String) this.session.getAttribute("openid"));
         others.setFlag((Boolean) info.get("flag"));
         others.setTime(new Timestamp(System.currentTimeMillis()));
+        others.setState(0);
         // 发布物品信息
         int result = othersService.publishOthers(others);
         // 返回发布结果
         Map<String, Object> map = new HashMap<>();
         if (result == 1) {
-            map.put("code",1);
+            map.put("code", 1);
             map.put("msg", "发布成功");
         } else {
-            map.put("code",0);
+            map.put("code", 0);
             map.put("msg", "发布失败");
         }
         return map;

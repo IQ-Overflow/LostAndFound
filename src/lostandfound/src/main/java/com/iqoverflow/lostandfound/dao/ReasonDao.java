@@ -12,11 +12,12 @@ import org.springframework.stereotype.Repository;
 public interface ReasonDao {
 
     // 修改reason的state属性
-    @Update("update reason set state = #{state} where pID = #{pID} and fID = #{fID}")
+    @Update("update reason set state = #{state} where pID = #{pID} and fID = #{fID} and tID = #{tID}")
     int updateState(Reason reason);
 
     // 插入reason
-    @Insert("INSERT INTO reason(`pID`,`fID`,`tID`,`message`,`state`) VALUES( #{pID}, #{fID}, #{tID}, #{message}, #{state} )")
+    @Insert("INSERT INTO reason(`pID`,`fID`,`tID`,`message`,`state`) " +
+            "VALUES( #{pID}, #{fID}, #{tID}, #{message}, #{state} )")
     int insertReason(Reason reason);
 
     // 查询fID的所有申请
