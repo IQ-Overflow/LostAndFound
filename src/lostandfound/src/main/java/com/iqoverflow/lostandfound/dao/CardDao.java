@@ -21,6 +21,10 @@ public interface CardDao {
     @Select("SELECT wxAccount FROM user WHERE uID = #{uID}")
     String getWxByuID(String uID);
 
+    //根据学号寻卡
+    @Select("SELECT * FROM Card WHERE stuID = #{stuID}")
+    Card findCardBystuID(String stuID);
+
     // 根据输入的信息找卡
     @Select("SELECT * FROM Card WHERE stuID = #{stuID} AND college = #{college} AND stuName = #{stuName}")
     @Results(

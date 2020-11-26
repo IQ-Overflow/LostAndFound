@@ -22,6 +22,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public Card findCardBystuID(String stuID) {
+        return cardDao.findCardBystuID(stuID);
+    }
+
+    @Override
     public Card findCardByInfo(String stuID, String college, String stuName) {
         Card card = cardDao.findCardByInfo(stuID,college,stuName);
         return card;

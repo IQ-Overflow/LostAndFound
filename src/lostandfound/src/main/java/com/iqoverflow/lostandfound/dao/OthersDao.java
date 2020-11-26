@@ -40,4 +40,8 @@ public interface OthersDao {
     int insertOthers(Others others);
 
 
+    // 根据oID找Others
+    @Select("SELECT * FROM others WHERE oID = #{oID}")
+    Others selectObjectByoID(Integer oID);
+
 }

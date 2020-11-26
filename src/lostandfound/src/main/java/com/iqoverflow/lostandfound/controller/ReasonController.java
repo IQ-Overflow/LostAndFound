@@ -1,8 +1,12 @@
 package com.iqoverflow.lostandfound.controller;
 
+import com.iqoverflow.lostandfound.domain.Card;
+import com.iqoverflow.lostandfound.domain.Others;
 import com.iqoverflow.lostandfound.domain.Reason;
 import com.iqoverflow.lostandfound.interceptor.AdminInterceptor;
 import com.iqoverflow.lostandfound.listener.MySessionContext;
+import com.iqoverflow.lostandfound.service.CardService;
+import com.iqoverflow.lostandfound.service.OthersService;
 import com.iqoverflow.lostandfound.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,12 @@ import java.util.Map;
 public class ReasonController {
     @Autowired
     ReasonService reasonService;
+
+    @Autowired
+    CardService cardService;
+
+    @Autowired
+    OthersService othersService;
 
     private HttpSession session = null;
 
@@ -120,11 +130,34 @@ public class ReasonController {
 
     //返回“我申请的”
     @GetMapping("/myApplies")
-    public Reason[] myApplies(){
+    public Reason[] myApplies(String fID){
         //HttpSession session = request.getSession();
-        String fID = (String)session.getAttribute("openid");
+        //String fID = (String)session.getAttribute("openid");
+        Reason[] reasons = reasonService.myApplies(fID);
+        Card card = null;
+        Others others = null;
 
-        return reasonService.myApplies(fID);
+        for(Reason reason : reasons){
+            String pID = reason.getpID();
+            card = cardService.findCardBystuID(pID);
+            others = othersService.selectObjectByoID(Integer.parseInt(pID));
+
+            if(card != null){
+
+                reason.setObject(card);
+
+            }else if (others != null){
+
+                reason.setObject(others);
+
+            }else {
+
+                reason.setObject(null);
+
+            }
+        }
+
+        return null;
     }
 
     //返回“向我申请的"
