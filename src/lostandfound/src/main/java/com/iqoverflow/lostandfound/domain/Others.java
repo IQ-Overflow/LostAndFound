@@ -1,6 +1,7 @@
 package com.iqoverflow.lostandfound.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 
@@ -15,6 +16,9 @@ public class Others {
     private Timestamp time;
     private Integer state;//状态。 0：正在进行  1：已结束  2：已删除
     private User poster;//发布人
+    private MultipartFile imgFile = null;//接收前端的图片文件
+    private String contact = null;//联系方式
+    private String imgStr = null;//返回前端的图片base64编码字符串
     // 数据库表里面没有这个字段
     //private String contact;
 
@@ -90,6 +94,30 @@ public class Others {
         this.poster = poster;
     }
 
+    public MultipartFile getImgFile() {
+        return imgFile;
+    }
+
+    public void setImgFile(MultipartFile imgFile) {
+        this.imgFile = imgFile;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getImgStr() {
+        return imgStr;
+    }
+
+    public void setImgStr(String imgStr) {
+        this.imgStr = imgStr;
+    }
+
     @Override
     public String toString() {
         return "Others{" +
@@ -102,6 +130,9 @@ public class Others {
                 ", time=" + time +
                 ", state=" + state +
                 ", poster=" + poster +
+                ", imgFile=" + imgFile +
+                ", contact=" + contact +
+                ", imgStr=" + imgStr +
                 '}';
     }
 }
