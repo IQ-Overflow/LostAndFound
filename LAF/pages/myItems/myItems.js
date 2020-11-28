@@ -8,7 +8,8 @@ Page({
   data: {
     mode: 'normal',
     idCardList: [],
-    normalCardList: []
+    normalCardList: [],
+    type: 'found'     //当前页面类型，found表示我捡到的，lookfor表示我寻找的
   },
 
   changeMode(e) {
@@ -25,17 +26,31 @@ Page({
 
 
   getMyCardList() {
-    request({
-      url: '/whatIFound'
-    })
-    .then(res => {
-      if(res.statusCode == 200) {
-        this.setData({
-          idCardList: res.data[1],
-          normalCardList: res.data[0]
-        })
-      }
-    })
+    if(this.data.type == 'found') {
+      request({
+        url: '/whatIFound'
+      })
+      .then(res => {
+        if(res.statusCode == 200) {
+          this.setData({
+            idCardList: res.data[1],
+            normalCardList: res.data[0]
+          })
+        }
+      })
+    } else if(this.data.type == 'lookfor') {
+      request({
+        url: '/myLostItems'
+      })
+      .then(res => {
+        if(res.statusCode == 200) {
+          this.setData({
+            idCardList: res.data[1],
+            normalCardList: res.data[0]
+          })
+        }
+      })
+    }
   },
 
   /**
