@@ -48,7 +48,12 @@ Component({
             }
           })
           .then(res => {
-            console.log(res)
+            if(res.data.code == 2) {
+              wx.showToast({
+                icon: 'none',
+                title: res.data.msg
+              })
+            }
           })
         }
       })
@@ -88,7 +93,7 @@ Component({
     this.setData({
       openid
     })
-    if(this.data.cardMsg.poster.uID == openid) {
+    if(this.data.cardMsg.poster.uID !== openid) {
       this.setData({
         mode: 'self'
       })
