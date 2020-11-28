@@ -10,7 +10,8 @@ Page({
     index:0,
     title:'',
     content:'',
-    contactMethod:''
+    contactMethod:'',
+    contact:''
   },
 
   /**
@@ -29,12 +30,15 @@ Page({
   bindFormSubmit(e){
     this.data.title = e.detail.value.title
     this.data.content = e.detail.value.content
+    this.data.contact = e.detail.value.contact
+    // console.log(this.data.contact)
     request({
       url:'/others/publishOthers',
       data:{
         title:this.data.title,
         content: this.data.content,
-        flag: this.data.index === 0 ? true: false
+        flag: this.data.index === 0 ? true: false,
+        contact: this.data.contact
       },
       method:'POST'
     }).then(res=>{
