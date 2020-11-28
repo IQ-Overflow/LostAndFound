@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +63,7 @@ public class OthersController {
         return map;
     }
 
-    // 按分页方式返回未删除的others
+    // 按分页方式返回未删除的others（无图片）
     @PostMapping("/getOthersForPage")
     public List<Others> getOthersForPage(@RequestBody Map<String, Object> info) {
         int pageNext = (int) info.get("pageNext");
@@ -79,10 +80,45 @@ public class OthersController {
         return othersList;
     }
 
-    // 获取所有others
+    // 按分页方式返回未删除的others（有图片）
+    @PostMapping("/getOthersForPageWithPic")
+    public List<Others> getOthersForPageWithPic(@RequestBody Map<String, Object> info) throws IOException {
+        // 调用（上面无图片返回的方法）
+        List<Others> othersList = getOthersForPage(info);
+        // 将图片一起返回
+        for (Others others : othersList) {
+            String pic = others.getPic();
+            if ("nopic".equals(pic)) {
+                others.setImgStr("nopic");
+            } else {
+                String imageStr = ImageUtils.readImageByBase64(pic);
+                others.setImgStr(imageStr);
+            }
+        }
+        return othersList;
+    }
+
+    // 获取所有others（无图片）
     @GetMapping("/getOthersList")
     public List<Others> getOthersList() {
         return othersService.getOthersList();
+    }
+
+    // 获取所有others（有图片）
+    @GetMapping("/getOthersListWithPic")
+    public List<Others> getOthersListWithPic() throws IOException {
+        List<Others> othersList = othersService.getOthersList();
+        // 将图片一起返回
+        for (Others others : othersList) {
+            String pic = others.getPic();
+            if ("nopic".equals(pic)) {
+                others.setImgStr("nopic");
+            } else {
+                String imageStr = ImageUtils.readImageByBase64(pic);
+                others.setImgStr(imageStr);
+            }
+        }
+        return othersList;
     }
 
     // 发布物品（无图片）

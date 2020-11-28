@@ -3,14 +3,16 @@ package com.iqoverflow.lostandfound.utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
 public class ImageUtils {
 
-    private final static String SAVE_IMAGE_PATH = "D:/image/";
+    private final static String SAVE_IMAGE_PATH = "C:/images/";
 
     /**
      * 返回文件后缀
@@ -63,6 +65,36 @@ public class ImageUtils {
      */
     public static String getNewImagePath(String name) {
         return SAVE_IMAGE_PATH+name;
+    }
+
+    /**
+     * 读取图片文件，将二进制码转为base64编码后返回
+     * @param imagePath 图片文件的路径
+     * @return base64编码的结果
+     * @throws IOException
+     */
+    public static String readImageByBase64(String imagePath) throws IOException {
+        String imgStr = "";
+        FileInputStream fileInputStream = null;
+        try {
+            File file = new File(imagePath);
+            fileInputStream = new FileInputStream(file);
+            byte[] buffer = new byte[(int) file.length()];
+            int offset = 0;
+            int numRead = 0;
+            while (offset < buffer.length && (numRead = fileInputStream.read(buffer, offset, buffer.length - offset)) >= 0) {
+                offset += numRead;
+            }
+            if (offset != buffer.length) {
+                throw new IOException("Could not completely read file " + file.getName());
+            }
+            imgStr = Base64.getEncoder().encodeToString(buffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            fileInputStream.close();
+        }
+        return imgStr;
     }
 
 }
