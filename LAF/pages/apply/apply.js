@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList:[]
+    dataList:[],
+    noneNews: false
   },
   //  获取我申请的
   getDataList(){
@@ -15,7 +16,8 @@ Page({
     }).then(res=>{
       console.log(res.data)
       this.setData({
-        dataList: res.data
+        dataList: res.data,
+        noneNews: res.data.length === 0 ? true : false
       })
     })
   },
