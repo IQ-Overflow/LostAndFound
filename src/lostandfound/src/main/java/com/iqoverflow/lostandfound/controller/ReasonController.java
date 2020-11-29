@@ -120,6 +120,14 @@ public class ReasonController {
             this.session = request.getSession();
         }
         //HttpSession session = request.getSession();
+        Map<String, Object> map = new HashMap<>();
+        Reason r= reasonService.selectMyApplyBypID((String) info.get("pID"),(String) this.session.getAttribute("openid"));
+        if(r!=null){
+            map.put("code", 2);
+            map.put("msg", "已经申请过了");
+            return map;
+        }
+
         Reason reason = new Reason();
         reason.setpID((String) info.get("pID"));
         reason.setfID((String) this.session.getAttribute("openid"));
@@ -129,7 +137,7 @@ public class ReasonController {
         // 提交申请，返回提交结果
         int result = reasonService.appliesForContact(reason);
         // 返回发布结果
-        Map<String, Object> map = new HashMap<>();
+
         if (result == 1) {
             map.put("code", 1);
             map.put("msg", "发布申请成功");
