@@ -63,10 +63,32 @@ Component({
     },
 
     deleteCard() {
+      let _this = this;
       wx.showModal({
         content: '确定删除此信息吗？',
         success() {
-
+          request({
+            url: '/card/cancel',
+            method: 'DELETE',
+            data: {
+              stuID: _this.data.cardMsg.stuID,
+              flag: _this.data.cardMsg.flag
+            }
+          })
+          .then(res => {
+            if(res.data.flag == true) {
+              wx.showModal({
+                icon: 'none',
+                title: '删除成功'
+              })
+              _this.triggerEvent('refresh');
+            } else {
+              wx.showModal({
+                icon: 'none',
+                title: res.data.msg
+              })
+            }
+          })
         }
       })
     },

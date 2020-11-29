@@ -20,7 +20,7 @@
     <view class="func">
         <view class="state" style="color: {{state[cardMsg.state].color}}">{{state[cardMsg.state].name}}</view>
         <view class="btn">
-            <view class="button delete" wx:if="{{mode == 'self'}}" bindtap="deleteCard">删除</view>
+            <view class="button delete" wx:if="{{mode == 'self' && cardMsg.state!=3}}" bindtap="deleteCard">删除</view>
             <view class="button apply" bindtap="showApply" wx:if="{{mode == 'other'}}">申请联系</view>
         </view>
     </view>

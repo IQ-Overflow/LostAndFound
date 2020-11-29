@@ -11,4 +11,5 @@
     style="display:{{mode=='card'?'block':'none'}}"
     wx:for="{{idCardList}}"
     cardMsg="{{item}}"
+    bind:refresh="getMyCardList"
 ></card-item>
