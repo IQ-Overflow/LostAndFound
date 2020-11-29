@@ -1,33 +1,37 @@
 <view class="card">
-    <view class="top">
-        <view class="person">
-            <image class="avatarUrl" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132"/>
-            <view class="nickname">昵称</view>
-        </view>
-        <view class="moreMsg">
-            <text class="time">2020/11/07 23:50</text>
-        </view>
+  <view class="top">
+    <view class="person">
+      <image class="avatarUrl" src="{{dataItem.object.poster.avatarUrl}}" />
+      <view class="nickname">{{dataItem.object.poster.userName}}</view>
     </view>
-    <view class="submit-reason">
-      申请理由：{{dataItem.message}}
+    <view class="moreMsg">
+      <text class="time">{{dataItem.object.time}}</text>
     </view>
-    <view class="cardMsg">
-        <view class="text">
-            <view class="num">学号：33432445</view>
-            <view class="name">姓名：陈xx</view>
-            <view class="college">学院：计算机学院</view>
-        </view>
-        <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" />
+  </view>
+  <view class="submit-reason">
+    申请理由：{{dataItem.message}}
+  </view>
+  <view class="cardMsg">
+    <view class="text" wx:if="{{dataItem.type===1}}">
+      <view class="num">标题: {{dataItem.object.title}}</view>
+      <view class="name">内容: {{dataItem.object.content}}</view>
     </view>
-    <view class="func" wx:if="{{dataItem.state===0}}">
-        <view class="ok">通过</view>
-        <view class="refuse">拒绝</view>
-    </view>
-    <view class="func" wx:if="{{dataItem.state===2}}">
-        <view class="status-refuse">已拒绝</view>
-    </view>
-     <view class="func" wx:if="{{dataItem.state===1}}">
-        <view class="status-ok">已通过</view>
-    </view>
-</view>
 
+    <view class="text" wx:if="{{dataItem.type===0}}">
+      <view class="num">学号: {{dataItem.object.stuID}}</view>
+      <view class="name">姓名: {{dataItem.object.stuName}}</view>
+      <view class="college">学院: {{dataItem.object.college}}</view>
+    </view>
+    <image class="img" src="{{dataItem.object.pic}}" />
+  </view>
+  <view class="func" wx:if="{{dataItem.state===0}}">
+    <view class="ok" bindtap="agree" data-pID="{{dataItem.pID}}" data-fID="{{dataItem.fID}}">通过</view>
+    <view class="refuse" bindtap="refuse"  data-pID="{{dataItem.pID}}" data-fID="{{dataItem.fID}}">拒绝</view>
+  </view>
+  <view class="func" wx:if="{{dataItem.state===2}}">
+    <view class="status-refuse">已拒绝</view>
+  </view>
+  <view class="func" wx:if="{{dataItem.state===1}}">
+    <view class="status-ok">已通过</view>
+  </view>
+</view>

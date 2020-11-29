@@ -13,13 +13,13 @@ Component({
   data: {
     arr:[
       {
-        url: '',
+        url: '/pages/myItems/myItems?found',
         img:'',
         content: '我捡到的'
       },
       {
-        url: '',
-        img: '',
+        url: '/pages/myItems/myItems?lookfor',
+        // img: 'http://qkjen8x7q.hn-bkt.clouddn.com/lost.png',
         content: '我丢失的'
       },
       {

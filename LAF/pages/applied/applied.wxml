@@ -1,6 +1,6 @@
 <!--pages/applied/applied.wxml-->
-<block wx:for="{{dataList}}" wx:key="index">
-  <appliedCard dataItem="{{item}}"></appliedCard>
+<block wx:for="{{dataList}}" wx:key="index" >
+  <appliedCard dataItem="{{item}}" bind:refuse="refuse" bind:agree="agree" data-index="{{index}}"></appliedCard>
 </block>
 <block wx:if="{{dataList.length===0}}">
   <view class="no-container">

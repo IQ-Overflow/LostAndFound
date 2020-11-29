@@ -18,6 +18,50 @@ Page({
       })
     })
   },
+  refuse(e){
+    this.useApi(e, '/reason/refuseApplies','refuse')
+  },
+  agree(e){
+    this.useApi(e, '/reason/agreeApplies','agree')
+   
+  },
+  useApi(e,url,type){
+    let { fid, pid } = e.detail
+    let index = e.currentTarget.dataset.index
+    // console.log(url)
+    // console.log(fid,pid,index)
+    request({
+      url: url,
+      data: {
+        pID: pid,
+        fID: fid
+      },
+      method: 'POST'
+    }).then(res => {
+      console.log(res)
+      if (res.data.code === 1) {
+        let that = this
+        wx.showToast({
+          title: res.data.msg,
+          success: function () {
+            // that.data.dataList.splice(index, 1)
+            // that.setData({
+            //   dataList: that.data.dataList
+            // })
+            let item = that.data.dataList[index].state
+            // console.log(item)
+            this.setData({
+              [item]: type ==='refuse'?2:1
+            })
+          }
+        })
+      } else if (res.data.code === 0) {
+        wx.showToast({
+          title: res.data.msg,
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -20,6 +20,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    agree(e){
+      let { fid, pid } = e.currentTarget.dataset
+      // console.log(e)
+      this.triggerEvent('agree', { fid, pid })
+    },
+    refuse(e){
+      let { fid, pid } = e.currentTarget.dataset
+      // console.log(e)
+      this.triggerEvent('refuse', { fid, pid })
+    }
   }
 })

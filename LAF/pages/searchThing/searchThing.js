@@ -62,7 +62,13 @@ Page({
         wx.showToast({
           title: '发布成功',
           duration:1000,
-          icon:'success'
+          icon:'success',
+          success:function(){
+            wx.switchTab({
+              url: '/pages/index/index',
+            })
+            // console.log(1)
+          }
         })
       }
     })
