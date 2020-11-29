@@ -1,10 +1,7 @@
 package com.iqoverflow.lostandfound.dao;
 
 import com.iqoverflow.lostandfound.domain.Reason;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -22,14 +19,23 @@ public interface ReasonDao {
 
     // 查询fID的所有申请
     @Select("SELECT * FROM reason WHERE fID = #{fID}")
+    @Results(
+            id = "reasonMap",
+            value  ={
+                    @Result(property = "reasonPoster",column = "fID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "fID", column = "fID")
+            }
+    )
     Reason[] selectApplyByfId(String fID);
 
     // 查询tID收到的申请
     @Select("SELECT * FROM reason WHERE tID = #{tID}")
+    @ResultMap("reasonMap")
     Reason[] selectReceivedAppliesOftID(String tID);
 
     // 查找“我申请”的某个物品
     @Select("SELECT * FROM reason WHERE pID = #{pID} AND fID = #{fID} ")
+    @ResultMap("reasonMap")
     Reason selectMyApplyBypID(String pID , String fID);
 
 
