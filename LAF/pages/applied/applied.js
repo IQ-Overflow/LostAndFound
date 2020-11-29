@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList:[]
+    dataList:[],
+    noneNews:false
   },
   getDataList(){
     request({
@@ -14,8 +15,10 @@ Page({
     }).then(res=>{
       // console.log(res)
       this.setData({
-        dataList:res.data
+        dataList:res.data,
+        noneNews:res.data.length===0?true:false
       })
+
     })
   },
   refuse(e){
@@ -28,8 +31,6 @@ Page({
   useApi(e,url,type){
     let { fid, pid } = e.detail
     let index = e.currentTarget.dataset.index
-    // console.log(url)
-    // console.log(fid,pid,index)
     request({
       url: url,
       data: {
@@ -44,14 +45,11 @@ Page({
         wx.showToast({
           title: res.data.msg,
           success: function () {
-            // that.data.dataList.splice(index, 1)
-            // that.setData({
-            //   dataList: that.data.dataList
-            // })
-            let item = that.data.dataList[index].state
-            // console.log(item)
-            this.setData({
-              [item]: type ==='refuse'?2:1
+            let item = `dataList[${index}].state`
+            that.setData({
+              [item]: type === 'refuse' ? 2 : 1
+            }, () => {
+              console.log(that.data.dataList[index])
             })
           }
         })

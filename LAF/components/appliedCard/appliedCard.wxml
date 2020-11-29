@@ -1,8 +1,8 @@
 <view class="card">
   <view class="top">
     <view class="person">
-      <image class="avatarUrl" src="{{dataItem.object.poster.avatarUrl}}" />
-      <view class="nickname">{{dataItem.object.poster.userName}}</view>
+      <image class="avatarUrl" src="{{dataItem.reasonPoster.avatarUrl}}" />
+      <view class="nickname">{{dataItem.reasonPoster.userName}}</view>
     </view>
     <view class="moreMsg">
       <text class="time">{{dataItem.object.time}}</text>
