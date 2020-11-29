@@ -19,6 +19,7 @@ public class Others {
     private MultipartFile imgFile = null;//接收前端的图片文件
     private String contact = null;//联系方式
     private String imgStr = null;//返回前端的图片base64编码字符串
+
     // 数据库表里面没有这个字段
     //private String contact;
 

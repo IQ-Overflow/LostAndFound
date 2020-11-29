@@ -23,6 +23,13 @@ public interface CardDao {
 
     //根据学号寻卡
     @Select("SELECT * FROM Card WHERE stuID = #{stuID}")
+    @Results(
+            value  ={
+                    @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "uID", column = "uID"),
+                    @Result(property = "state" , column = "state")
+            }
+    )
     Card findCardBystuID(String stuID);
 
     // 根据输入的信息找卡

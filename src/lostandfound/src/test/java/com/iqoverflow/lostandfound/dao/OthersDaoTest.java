@@ -46,4 +46,10 @@ public class OthersDaoTest {
         System.out.println("影响的行数为：" + i);
     }
 
+    @Test
+    public void testFindByID(){
+        Others objcet = othersDao.selectObjectByoID(1);
+        System.out.println(objcet.getPoster());
+    }
+
 }

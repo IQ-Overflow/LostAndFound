@@ -49,6 +49,14 @@ public interface OthersDao {
 
     // 根据oID找Others
     @Select("SELECT * FROM others WHERE oID = #{oID}")
+    @Results(
+            value = {
+                    @Result(property = "poster", column = "uID",
+                            one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "uID", column = "uID"),
+                    @Result(property = "state", column = "state")
+            }
+    )
     Others selectObjectByoID(Integer oID);
 
 }
