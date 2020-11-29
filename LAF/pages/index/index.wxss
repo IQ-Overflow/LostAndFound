@@ -1,5 +1,8 @@
 /* pages/index/index.wxss */
-
+.index-container{
+  height: 100vh;
+  /* overflow: hidden; */
+}
 .select {
   display: flex;
   align-items: center;
@@ -67,4 +70,31 @@
   position: fixed;
   bottom: 90rpx;
   right: 40rpx;
+}
+
+.no-message-remind{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  animation: dispear 2s;
+  opacity: 0;
+}
+@keyframes dispear{
+  from{
+    opacity: 1
+  }
+  to{
+    opacity: 0
+  }
+}
+.remind-text{
+  display: inline-block;
+  /* width: 60vw; */
+  background: #ffa6a5;
+  border-radius: 50px;
+  text-align: center;
+  color: white;
+  padding: 4px 10px;
+
 }

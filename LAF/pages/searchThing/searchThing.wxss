@@ -39,3 +39,6 @@ textarea{
 .publish{
     margin-bottom: 10%;
 }
+.addImg{
+  width: 60vw
+}

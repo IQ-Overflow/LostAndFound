@@ -1,5 +1,6 @@
 // pages/searchThing/searchThing.js
 import request from '../../utils/request.js'
+import throttle from '../../utils/throttle.js'
 Page({
 
   /**
@@ -11,7 +12,8 @@ Page({
     title:'',
     content:'',
     contactMethod:'',
-    contact:''
+    contact:'',
+    imgUrl:''
   },
 
   /**
@@ -27,18 +29,32 @@ Page({
       index: this.data.index
     })
   },
-  bindFormSubmit(e){
+  // bindFormSubmit(e){
+  //   // throttle(this.cb,2000)
+  //   // const throlledFn = throttle(this.cb, 2000)
+
+  //   // console.log(throttle)
+  // },
+  cb(e){
+    // console.log(e)
+    // console.log('点击了')
+  },
+  sendRequest(e){
     this.data.title = e.detail.value.title
     this.data.content = e.detail.value.content
     this.data.contact = e.detail.value.contact
     // console.log(this.data.contact)
     request({
       url:'/others/publishOthers',
+      header: {
+        'content-type': 'application/x-www-form-urlencggoded;charset=UTF-8'
+      },
       data:{
         title:this.data.title,
         content: this.data.content,
         flag: this.data.index === 0 ? true: false,
-        contact: this.data.contact
+        contact: this.data.contact,
+        imgFile:this.data.imgUrl
       },
       method:'POST'
     }).then(res=>{
@@ -51,6 +67,38 @@ Page({
       }
     })
   },
+  // 选择图片
+  chooseImg(){
+    wx.chooseImage({
+      count:1,
+      sizeType:['original','compressed'],
+      success:(res)=>{
+        let size = res.tempFiles[0].size // 图片的大小
+        console.log(res)
+        this.setData({
+          imgUrl: res.tempFilePaths[0]
+        })
+      }
+    })
+  },
+  // 使用canvas对图片进行压缩
+  compressImg(imgUrl){
+
+  },
+  //删除照片
+  cancelImg(){
+    this.setData({
+      imgUrl:''
+    })
+  },
+  // 预览照片
+  previewImage(e){
+    wx.previewImage({
+      current: this.data.imgUrl, // 当前显示图片的http链接  
+      urls: [this.data.imgUrl] // 需要预览的图片http链接列表  
+    })
+    // console.log(e)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -62,7 +110,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.bindFormSubmit = throttle(this.sendRequest,1000)
   },
 
   /**

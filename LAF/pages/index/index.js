@@ -10,7 +10,14 @@ Page({
     page: 1, // 当前页码
     dataList: [],
     isToastShow: false,
-    message: ''
+    message: '',
+    alertMessage: false, // 是否出现提示性的话
+    pageHeightArr: [],
+    currentRenderIndex: 0, // 当前渲染的是哪一屏
+    windowHeight:0,// 窗口高度
+    isMoreNews: true, // 是否有更多信息
+    computedCurrentIndex:0,
+    list:[]
   },
   changeTab(e) {
     this.setData({
@@ -24,19 +31,55 @@ Page({
       url: '/pages/searchThing/searchThing',
     })
   },
+  onPullDownRefresh() {
+    console.log('刷新')
+  },
+  loadmore: function() {
+    if (this.data.isMoreNews) {
+      this.data.page++;
+    }
+    this.getDataList()
+    // console.log('到底了')
+  },
+  // 获取每一屏的高度
+  setHeight() {
+    let that = this
+    let query = wx.createSelectorQuery();
+    query.select(`#warp_${that.data.page-1}`).boundingClientRect()
+    query.exec((res) => {
+      that.data.pageHeightArr[`${that.data.page-1}`] = res[0] && res[0].height
+      // console.log(that.data.pageHeightArr)
+      that.setData({
+        pageHeightArr: that.data.pageHeightArr
+      })
+    })
+  },
   getDataList() {
     request({
       url: '/others/getOthersForPage',
       data: {
         pageNext: this.data.page,
-        pageSize: 10
+        pageSize: 4
       },
       method: 'POST'
     }).then(res => {
-      // console.log(res.data)
-      if (res.data) {
+      console.log(this.data.page, res.data)
+      let list = `dataList[${this.data.dataList.length}]`
+      if (res.data.length === 0) {
+        // console.log(res.data)
+        // 如果没有数据的时候
         this.setData({
-          dataList: res.data
+          alertMessage: true,
+          isMoreNews: false // 表明没有更多信息
+        }, () => {})
+      } else {
+        let that = this
+        this.setData({
+          [list]: res.data,
+          alertMessage: false
+        }, () => {
+          that.setHeight()
+          console.log(this.data.dataList)
         })
       }
     })
@@ -70,19 +113,64 @@ Page({
     request({
       url: '/reason/appliesForContact',
       data: {
-        pID: this.data.oID+'',
+        pID: this.data.oID + '',
         tID: this.data.uID,
         message: this.data.message
       },
-      method:"POST"
+      method: "POST"
     }).then(res => {
       console.log(res)
     })
   },
+  scroll(){
+
+  },
+  //监听当前在哪个屏幕
+  // scroll(e) {
+  //   // console.log(e)
+  //   setTimeout(() => {
+  //     // console.log(e.detail.scrollTop)
+  //     let scrollTop = e.detail.scrollTop
+  //     let tempScrollTop = 0
+  //     for (let i = 0; i < this.data.pageHeightArr.length; i++) {
+  //       tempScrollTop = tempScrollTop + this.data.pageHeightArr[i]
+  //       if (tempScrollTop > scrollTop + this.data.windowHeight - 30) {
+  //         // 说明此时位于第i页
+  //         this.data.computedCurrentIndex = i
+  //         // console.log(this.data.currentRenderIndex)
+  //         break;
+  //       }
+  //     }
+  //     // this.data.currentRenderIndex = this.data.computedCurrentIndex;
+  //     if(this.data.currentRenderIndex!==this.data.computedCurrentIndex){
+  //       let tempList = new Array(this.data.page).fill(0)
+  //       // console.log(tempList)
+  //       tempList.forEach((item,index)=>{
+  //         if(this.data.computedCurrentIndex-1<=index&&index<=this.computedCurrentIndex+1){
+  //           tempList[index] = this.data.dataList[index]
+  //         }else{
+  //           tempList[index] = {height:this.data.pageHeightArr[index]}
+  //         }
+  //       })
+  //       this.data.currentRenderIndex = this.data.computedCurrentIndex;
+  //       this.setData({
+  //         list: tempList
+  //       }, () => {
+  //         console.log(this.data.list)
+  //       })
+  //     }
+     
+  //   }, 500)
+  //   // console.log('index')
+  // },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight,
+    })
     // this.getDataList()
   },
 
