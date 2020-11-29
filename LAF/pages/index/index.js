@@ -59,7 +59,7 @@ Page({
       url: '/others/getOthersForPage',
       data: {
         pageNext: this.data.page,
-        pageSize: 4
+        pageSize: 10
       },
       method: 'POST'
     }).then(res => {
