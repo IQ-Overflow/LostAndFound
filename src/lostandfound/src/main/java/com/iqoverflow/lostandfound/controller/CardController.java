@@ -199,7 +199,7 @@ public class CardController {
     public Message cancelCard(@RequestBody Map<String,Object> info){
         Message msg;
         String stuID = (String)info.get("stuID");
-        Boolean flag = (Boolean)info.get("flag");
+        //Boolean flag = (Boolean)info.get("flag");
 
         try{
             cardService.cancelCard(stuID);
@@ -216,7 +216,7 @@ public class CardController {
     public Message deleteCard(@RequestBody Map<String,Object> info){
         Message msg;
         String stuID = (String)info.get("stuID");
-        Boolean flag = (Boolean)info.get("flag");
+        //Boolean flag = (Boolean)info.get("flag");
 
         try{
             cardService.deleteCard(stuID);
