@@ -89,7 +89,8 @@ public class CardController {
         //若该卡曾被发布
         Card c = cardService.findCardByInfo(stuID,college,stuName);
         if( c!=null && c.getState() == 1  ){
-            cardService.repostCard(stuID,flag);
+            cardService.repostCard(stuID);
+            cardService.changeTypeOfCard(stuID,flag);
             msg = new Message(true,"发布成功");
             return msg;
         }
@@ -107,7 +108,7 @@ public class CardController {
             cardService.postCard(card);
         }catch (Exception e){
 
-            msg = new Message(false,"该学生卡已被发布");
+            msg = new Message(false,"该学生卡已被发布。请通过搜索学生卡，与发布人取得联系。");
             return msg;
         }
 
@@ -166,7 +167,7 @@ public class CardController {
             }else { // 未申请
                 isApplied = false;
 
-                if(card.getState() == 1){ // 卡已被删除
+                if(card.getState() == 1 || card.getState() == 2){ // 卡已被删除
                     isDeleted = true;
                     card = null;
                     System.out.println("卡已被删除了" );
@@ -201,9 +202,27 @@ public class CardController {
         Boolean flag = (Boolean)info.get("flag");
 
         try{
-            cardService.cancelCard(stuID,flag);
+            cardService.cancelCard(stuID);
+        }catch (Exception e){
+            msg = new Message(false,"撤销失败,不存在该贴子");
+            return msg;
+        }
+
+        msg = new Message(true,"撤销成功");
+        return msg;
+    }
+
+    @DeleteMapping("delete")
+    public Message deleteCard(@RequestBody Map<String,Object> info){
+        Message msg;
+        String stuID = (String)info.get("stuID");
+        Boolean flag = (Boolean)info.get("flag");
+
+        try{
+            cardService.deleteCard(stuID);
         }catch (Exception e){
             msg = new Message(false,"删除失败,不存在该贴子");
+            return msg;
         }
 
         msg = new Message(true,"删除成功");

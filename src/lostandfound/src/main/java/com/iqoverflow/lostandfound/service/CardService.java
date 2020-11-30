@@ -23,11 +23,14 @@ public interface CardService {
     String getWxByuID(String uID);
 
     //撤销寻卡贴
-    void cancelCard(String stuID,Boolean flag);
+    void cancelCard(String stuID);
 
     //恢复寻卡贴
-    void repostCard(String stuID,Boolean flag);
+    void repostCard(String stuID);
 
     //删除寻卡贴
-    void deleteCard(String stuID,Boolean flag);
+    void deleteCard(String stuID);
+
+    //改变卡的类型
+    void changeTypeOfCard(String stuID,  Boolean flag);
 }

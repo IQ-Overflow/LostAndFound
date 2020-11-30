@@ -38,18 +38,23 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void cancelCard(String stuID,Boolean flag){
-        cardDao.cancelCard(stuID,flag,1);
+    public void cancelCard(String stuID){
+        cardDao.changeStateOfCard(stuID,1);
     }
 
     @Override
-    public void repostCard(String stuID, Boolean flag) {
-        cardDao.cancelCard(stuID,flag,0);
+    public void repostCard(String stuID) {
+        cardDao.changeStateOfCard(stuID,0);
     }
 
     @Override
-    public void deleteCard(String stuID, Boolean flag) {
-        cardDao.cancelCard(stuID,flag,2);
+    public void deleteCard(String stuID) {
+        cardDao.changeStateOfCard(stuID,2);
+    }
+
+    @Override
+    public void changeTypeOfCard(String stuID, Boolean flag) {
+        cardDao.changeTypeOfCard(stuID,flag);
     }
 
 

@@ -44,8 +44,12 @@ public interface CardDao {
     Card findCardByInfo(String stuID,String college,String stuName);
 
     //改变卡的状态
-    @Update("UPDATE card SET state = #{state} WHERE stuID = #{stuID} AND flag = #{flag}")
-    void cancelCard(String stuID,Boolean flag,Integer state);
+    @Update("UPDATE card SET state = #{state} WHERE stuID = #{stuID} ")
+    void changeStateOfCard(String stuID,  Integer state);
+
+    //改变卡的类型
+    @Update("UPDATE card SET flag = #{flag} WHERE stuID = #{stuID} ")
+    void changeTypeOfCard(String stuID,  Boolean flag);
 
 
 }

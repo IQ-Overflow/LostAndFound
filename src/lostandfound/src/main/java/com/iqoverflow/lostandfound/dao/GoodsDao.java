@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 public interface GoodsDao {
     //其他物品
     @Select("select * from others where uid=#{uid} and flag=#{flag}")
+    @Results(
+            value  ={
+                    @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
+                    @Result(property = "uID", column = "uID")
+            }
+    )
     Others[] getOthersInformation(String uid, int flag);
 
     //学生卡
