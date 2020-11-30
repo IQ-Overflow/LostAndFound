@@ -167,10 +167,10 @@ public class CardController {
             }else { // 未申请
                 isApplied = false;
 
-                if(card.getState() == 1 || card.getState() == 2){ // 卡已被删除
+                if(card.getState() == 1 || card.getState() == 2){ // 卡已结束或删除
                     isDeleted = true;
                     card = null;
-                    System.out.println("卡已被删除了" );
+                    System.out.println("卡已结束或删除了" );
                 }else {
                     System.out.println("卡还在");
                 }
