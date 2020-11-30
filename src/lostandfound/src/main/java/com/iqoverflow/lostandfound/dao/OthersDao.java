@@ -16,7 +16,7 @@ public interface OthersDao {
 
     // 按分页方式查询未删除的others
     @Select("SELECT oID, title, content, pic, uID, flag, time, state " +
-            "FROM others WHERE state IN (0,1) LIMIT #{begin}, #{pageSize}")
+            "FROM others WHERE state IN (0,1) ORDER BY time DESC LIMIT #{begin}, #{pageSize}")
     @Results(
             value = {
                     @Result(property = "poster", column = "uID",
@@ -28,7 +28,7 @@ public interface OthersDao {
     List<Others> selectOthersForPage(int begin, int pageSize);
 
     // 查询所有others
-    @Select("select * from others")
+    @Select("select * from others ORDER BY time DESC")
     @Results(
             value = {
                     @Result(property = "poster", column = "uID",

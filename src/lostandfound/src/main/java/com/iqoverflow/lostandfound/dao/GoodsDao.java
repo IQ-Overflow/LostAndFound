@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GoodsDao {
     //其他物品
-    @Select("select * from others where uid=#{uid} and flag=#{flag}")
+    @Select("select * from others where uid=#{uid} and flag=#{flag} ORDER BY time DESC")
     @Results(
             value  ={
                     @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
@@ -19,7 +19,7 @@ public interface GoodsDao {
     Others[] getOthersInformation(String uid, int flag);
 
     //学生卡
-    @Select("select * from card where uid=#{uid} and flag=#{flag}")
+    @Select("select * from card where uid=#{uid} and flag=#{flag} ORDER BY time DESC")
     @Results(
             value  ={
                     @Result(property = "poster",column = "uID" , one = @One(select = "com.iqoverflow.lostandfound.dao.UserProfiledao.getUserProfile")),
