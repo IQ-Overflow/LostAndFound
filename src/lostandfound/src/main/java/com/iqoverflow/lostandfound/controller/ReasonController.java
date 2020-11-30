@@ -80,6 +80,9 @@ public class ReasonController {
         if (result == 1) {
             map.put("code", 1);
             map.put("msg", "已同意");
+            if (((String) info.get("pID")).length() == 10){
+                cardService.cancelCard((String) info.get("pID"));
+            }
         } else {
             map.put("code", 0);
             map.put("msg", "同意失败，请稍后重试");
