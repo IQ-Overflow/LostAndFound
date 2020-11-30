@@ -88,7 +88,7 @@ public class CardController {
 
         //若该卡曾被发布
         Card c = cardService.findCardByInfo(stuID,college,stuName);
-        if( c != null && c.getState() == 1 || c.getState() == 2 ){
+        if( c != null && (c.getState() == 1 || c.getState() == 2 )){
             cardService.repostCard(stuID);
             cardService.changeTypeOfCard(stuID,flag);
             msg = new Message(true,"发布成功");
