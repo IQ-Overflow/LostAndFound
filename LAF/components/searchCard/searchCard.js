@@ -37,7 +37,6 @@ Component({
           index: e.detail.value
         })
       }
-      console.log(this.data.type)
     },
     getStuNum(e) {
       this.setData({
@@ -55,23 +54,31 @@ Component({
       })
     },
     search() {
-      console.log(this.data.stuNum, this.data.name, this.data.college)
-      let _this = this;
+      if(this.data.stuNum == '' || this.data.college=='' || this.data.name=='') {
+        wx.showToast({
+          title: '请将信息填写完整',
+          icon: 'none'
+        })
+        return;
+      }
       request({
         url: '/card/searchCard',
         data: {
           stuID: this.data.stuNum,
           college: this.data.college,
-          stuName: this.data.name,
-          flag: this.data.type
+          stuName: this.data.name
         },
         method: 'POST'
       })
       .then(res => {
-        console.log(res.data)
         if(res.data.flag == true) {
           this.setData({
             cardMsg : res.data.msg
+          })
+          this.setData({
+            stuNum: '',
+            name: '',
+            college: ''
           })
         } else {
           wx.showToast({

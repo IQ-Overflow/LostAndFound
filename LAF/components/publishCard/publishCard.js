@@ -59,6 +59,13 @@ Component({
     },
     publish() {
       console.log(this.data.stuNum, this.data.name, this.data.college)
+      if(this.data.stuNum == '' || this.data.college=='' || this.data.name=='' || this.data.contact=='') {
+        wx.showToast({
+          title: '请将信息填写完整',
+          icon: 'none'
+        })
+        return;
+      }
       let _this = this;
       request({
         url: '/card/postCard',
