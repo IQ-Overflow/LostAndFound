@@ -1,12 +1,12 @@
 <view class="input-area">
     <view class="num input">
-        学号：<input  bindblur="getStuNum"  value="{{stuNum}}"/>
+        学号：<input bindblur="getStuNum"  value="{{stuNum}}"/>
     </view>
     <view class="name input">
-        姓名：<input  bindblur="getName"  value="{{name}}"/>
+        姓名：<input bindblur="getName"  value="{{name}}"/>
     </view>
     <view class="college input">
-        学院：<input  bindblur="getCollege"  value="{{college}}"/>
+        学院：<input bindinput="getCollege" bindblur="getCollege"  value="{{college}}"/>
     </view>
     <!-- <view class="type input">
         类型：

@@ -68,7 +68,7 @@ Component({
         content: '确定删除此信息吗？',
         success() {
           request({
-            url: '/card/cancel',
+            url: '/card/delete',
             method: 'DELETE',
             data: {
               stuID: _this.data.cardMsg.stuID,
