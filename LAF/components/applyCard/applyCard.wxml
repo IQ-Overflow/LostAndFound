@@ -1,0 +1,38 @@
+<view class="card">
+  <view class="top">
+    <view class="person">
+      <image class="avatarUrl" src="{{dataItem.object.poster.avatarUrl}}" />
+      <view class="nickname">{{dataItem.object.poster.userName}}</view>
+    </view>
+    <view class="moreMsg">
+      <text class="time">{{dataItem.object.time}}</text>
+    </view>
+  </view>
+  <view class="cardMsg">
+    <view class="text" wx:if="{{dataItem.type===1}}">
+      <view class="num">标题: {{dataItem.object.title}}</view>
+      <view class="name">内容: {{dataItem.object.content}}</view>
+    </view>
+    <image class="img" src="{{dataItem.object.pic}}" wx:if="{{dataItem.type===1}}" />
+    <view class="text" wx:if="{{dataItem.type===0}}">
+      <view class="num">学号: {{dataItem.object.stuID}}</view>
+      <view class="name">姓名: {{dataItem.object.stuName}}</view>
+      <view class="college">学院: {{dataItem.object.college}}</view>
+    </view>
+  </view>
+  <view class="func" wx:if="{{dataItem.state==0}}">
+    <view class="state">正在进行</view>
+  </view>
+  <view class="bottom" wx:if="{{dataItem.state===2}}">
+    <view class="state-refuse">拒绝</view>
+    <view class="refuse-reason">
+      <!-- <text class="refuse-header">拒绝理由：</text> 因为我不想把微信给你呵呵呵呵 -->
+    </view>
+  </view>
+  <view class="bottom" wx:if="{{dataItem.state===1}}">
+    <view class="state-ok">同意</view>
+    <view class="contact">
+      <text class="contact-header">联系方式：</text> {{dataItem.msg}}
+    </view>
+  </view>
+</view>

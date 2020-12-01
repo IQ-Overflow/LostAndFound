@@ -1,0 +1,28 @@
+/* pages/myItems/myItems.wxss */
+.tab{
+    display: flex;
+    width: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 7%;
+    margin-top: 7%;
+    justify-content: space-between;
+    border: solid 2px #e9b6c2;
+    border-radius: 3px;
+}
+.card, .normal{
+    width: 50%;
+    height: 25px;
+    background: white;
+    text-align: center;
+    line-height: 25px;
+    color: #7f7f7f;
+}
+.normal{
+    border-right: solid 2px #e9b6c2;
+}
+.selected{
+    color: white;
+    background: #e9b6c2;
+}

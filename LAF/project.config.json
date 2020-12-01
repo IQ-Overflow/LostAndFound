@@ -1,0 +1,133 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"enableEngineNative": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.14.0",
+	"appid": "wx52e69bcad670ab80",
+	"projectname": "LAF",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"list": []
+		},
+		"conversation": {
+			"list": []
+		},
+		"plugin": {
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"list": []
+		},
+		"miniprogram": {
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/logs/logs",
+					"pathName": "pages/logs/logs",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/card/card",
+					"pathName": "pages/card/card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "普通寻物",
+					"pathName": "pages/searchThing/searchThing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/me/me",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我申请的",
+					"pathName": "pages/apply/apply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/myItems/myItems",
+					"pathName": "pages/myItems/myItems",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "向我提交的申请",
+					"pathName": "pages/applied/applied",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"scene": null
+				}
+			]
+		}
+	}
+}

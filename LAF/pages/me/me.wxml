@@ -1,0 +1,3 @@
+<!--pages/me/me.wxml-->
+<personInfo userInfo="{{userInfo}}"></personInfo>
+<clickItem></clickItem>

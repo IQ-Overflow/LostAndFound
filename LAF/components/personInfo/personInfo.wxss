@@ -1,0 +1,21 @@
+/* components/personInfo/personInfo.wxss */
+.container{
+    padding:  40rpx 20rpx;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    height: 130rpx;
+    box-sizing: border-box;
+}
+.person{
+  padding: 20rpx 40rpx;
+  display: flex;
+  align-items: center;
+}
+.head-img{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border: 1px solid rebeccapurple;
+  margin-right: 30rpx;
+}

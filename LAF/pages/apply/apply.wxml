@@ -1,0 +1,9 @@
+<!--pages/apply/apply.wxml-->
+<block wx:for="{{dataList}}" wx:key="index">
+  <applyCard dataItem="{{item}}"></applyCard>
+</block>
+<block wx:if="{{noneNews}}">
+  <view class="no-container">
+  你目前没有提交申请哦
+  </view>
+</block>

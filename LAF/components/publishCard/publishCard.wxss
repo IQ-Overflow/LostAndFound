@@ -1,0 +1,50 @@
+/* components/publishCard/publishCard.wxss */
+.input-area{
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: 10% auto;
+    text-align: center;
+}
+.input{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+input, picker{
+    border: solid 2px #f3f3f3;
+    border-radius: 3px;
+    width: 70%;
+    height: 29px;
+    line-height: 25px;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+.addPic{
+    width: 175px;
+    height: 175px;
+    border-radius: 5px;
+    border: dotted 2px #666666;
+    color: #666666;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 175px;
+    margin-top: 5%;
+    position: relative;
+    overflow: hidden;
+}
+.publish{
+    margin-bottom: 10%;
+}
+.uploadImg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.delBtn{
+    color: grey;
+    margin-top: 5px;
+}

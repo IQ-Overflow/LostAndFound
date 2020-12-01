@@ -1,0 +1,100 @@
+/* pages/index/index.wxss */
+.index-container{
+  height: 100vh;
+  /* overflow: hidden; */
+}
+.select {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  box-sizing: border-box;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  padding-top: 20rpx;
+  justify-content: space-around;
+}
+
+.select-title {
+  margin-right: 40rpx;
+}
+
+.select-btn {
+  display: flex;
+}
+
+.select-item {
+  width: 100rpx;
+  border: 1px solid #eaeaea;
+  height: 60rpx;
+  /* border-radius: 6px 0px 0px 6px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.active {
+  background: #e9b6c2;
+}
+
+.input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+.input input{
+   border: solid 2px #f3f3f3;
+  border-radius: 3px;
+  width: 40%;
+  height: 29px;
+  line-height: 25px;
+  padding-left: 8px;
+  box-sizing: border-box;
+}
+.btn{
+  width: 50px;
+  height: 25px;
+  border-radius: 4px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9b6c2;
+  color: white;
+  margin-left: 4px;
+}
+.add {
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 90rpx;
+  right: 40rpx;
+}
+
+.no-message-remind{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  animation: dispear 2s;
+  opacity: 0;
+}
+@keyframes dispear{
+  from{
+    opacity: 1
+  }
+  to{
+    opacity: 0
+  }
+}
+.remind-text{
+  display: inline-block;
+  /* width: 60vw; */
+  background: #ffa6a5;
+  border-radius: 50px;
+  text-align: center;
+  color: white;
+  padding: 4px 10px;
+
+}

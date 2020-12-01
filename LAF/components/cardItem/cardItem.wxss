@@ -1,0 +1,107 @@
+/* components/cardItem/cardItem.wxss */
+.card{
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: 3% auto;
+    border: solid #e9b6c2 2px;
+    border-radius: 5px;
+    position: relative;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.person{
+    margin-left: 2%;
+    margin-top: 2%;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+.avatarUrl{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 3%;
+}
+.nickname{
+    align-self: center;
+    font-size: 15px;
+}
+.moreMsg{
+    color: #888888;
+    font-size: 10px;
+    margin-top: 3%;
+    margin-right: 3%;
+    width: 42%;
+    text-align: right;
+}
+.type{
+    margin-right: 7%;
+    color: rgb(117, 141, 246);
+    color: #ef7030;
+}
+.cardMsg{
+    width: 94%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 14px;
+    margin-top: 2%;
+    color: #696969;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.img{
+    width: 80px;
+    height: 80px;
+}
+.func{
+    width: 94%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 6%;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.state{
+    font-size: 12px;
+    color: #c59f40;
+}
+.button{
+    padding: 2px 5px;
+    background: #e9b6c2;
+    color: white;
+    font-size: 14px;
+    display: inline-block;
+}
+.apply{
+    background: #e9b6c2;
+}
+.delete{
+    background: #e66161;
+}
+.cancel{
+    background: rgb(170, 199, 251);
+    margin-right: 3px;
+}
+.apply-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 10px;
+}
+.input{
+    border: solid 1px black;
+}

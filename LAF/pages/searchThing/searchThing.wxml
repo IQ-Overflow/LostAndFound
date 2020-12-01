@@ -1,0 +1,31 @@
+<!--pages/searchThing/searchThing.wxml-->
+<form bindsubmit="bindFormSubmit">
+  <view class="input-area">
+    <view class="num input">
+      标题：
+      <input name="title" />
+    </view>
+    <view class="name input">
+      详情：
+      <textarea name="content"></textarea>
+    </view>
+    <view class="type input">
+      类型：
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">{{array[index]}}</view>
+      </picker>
+    </view>
+    <view class="message input">
+      联系方式：
+      <input name="contact"/>
+    </view>
+    <view class="addPic" bindtap="chooseImg" wx:if="{{imgUrl.length==0}}">
+      添加图片
+    </view>
+    <view class="showImg" wx:else>
+      <image src="{{imgUrl}}" mode="widthFix" bindtap="previewImage" class="addImg" ></image>
+      <text catchtap="cancelImg">删除</text>
+    </view>
+  </view>
+  <button class="publish" form-type="submit">发布</button>
+</form>

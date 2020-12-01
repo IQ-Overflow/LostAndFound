@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "normal-items": "../../components/cShowCard/showCard",
+    "card-item": "../../components/cardItem/cardItem"
+  }
+}

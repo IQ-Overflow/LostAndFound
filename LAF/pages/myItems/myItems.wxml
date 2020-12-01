@@ -1,0 +1,15 @@
+<view class="tab">
+    <view class="normal {{mode=='normal'?'selected':'none'}}" bindtap="changeMode" data-mode="normal">普通</view>
+    <view class="card {{mode=='card'?'selected':'none'}}" bindtap="changeMode" data-mode="card">学生卡</view>
+</view>
+<normal-items 
+    style="display:{{mode=='normal'?'block':'none'}}"
+    wx:for="{{normalCardList}}"
+    dataItem="{{item}}"
+></normal-items>
+<card-item 
+    style="display:{{mode=='card'?'block':'none'}}"
+    wx:for="{{idCardList}}"
+    cardMsg="{{item}}"
+    bind:refresh="getMyCardList"
+></card-item>

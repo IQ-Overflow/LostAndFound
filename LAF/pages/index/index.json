@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 400,
+  "usingComponents": {
+    "showCard":"/components/cShowCard/showCard",
+    "inputToast":"/components/inputToast/inputToast"
+  }
+}

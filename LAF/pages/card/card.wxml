@@ -1,0 +1,6 @@
+<view class="tab">
+    <view class="search {{mode=='search'?'selected':'none'}}" bindtap="changeMode" data-mode="search">搜索</view>
+    <view class="publish {{mode=='publish'?'selected':'none'}}" bindtap="changeMode" data-mode="publish">发布</view>
+</view>
+<publish-card style="display:{{mode=='publish'?'block':'none'}}"></publish-card>
+<search-card style="display:{{mode=='search'?'block':'none'}}"></search-card>

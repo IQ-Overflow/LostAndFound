@@ -1,0 +1,124 @@
+/* components/cardItem/cardItem.wxss */
+
+.card {
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 3% auto;
+  border: solid #e9b6c2 2px;
+  border-radius: 5px;
+  position: relative;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.person {
+  margin-left: 2%;
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.avatarUrl {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 3%;
+}
+
+.submit-reason {
+  margin-left: 3%;
+  padding-top: 3%;
+  font-size: 13px;
+}
+
+.nickname {
+  align-self: center;
+  font-size: 15px;
+}
+
+.moreMsg {
+  color: #888;
+  font-size: 10px;
+  margin-top: 3%;
+  margin-right: 3%;
+  width: 42%;
+  text-align: right;
+}
+
+.type {
+  margin-right: 3%;
+}
+
+.cardMsg {
+  width: 94%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 14px;
+  margin-top: 2%;
+  color: #696969;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+}
+
+.func {
+  width: 94%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 3%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.resaon {
+  width: 94%;
+  font-size: 14px;
+  color: #696969;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.state {
+  font-size: 12px;
+  color: rgb(197, 159, 64);
+}
+
+.ok, .refuse {
+  padding: 2px 5px;
+  background: #e9b6c2;
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.refuse {
+  background: #cb0001;
+}
+
+.status-ok, .status-refuse {
+  font-size: 14px;
+}
+
+.status-ok {
+  color: #19ac18;
+}
+
+.status-refuse {
+  color: #cb0001;
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "publish-card":"/components/publishCard/publishCard",
+    "search-card": "/components/searchCard/searchCard"
+  },
+  "navigationBarTitleText": "寻卡",
+  "navigationBarBackgroundColor": "#ffffff",
+  "backgroundColor": "#ffffff"
+}

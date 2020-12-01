@@ -1,0 +1,11 @@
+<!--pages/applied/applied.wxml-->
+<!-- <block wx:if="{{dataList.length!==0}}"> -->
+  <block wx:for="{{dataList}}" wx:key="index">
+    <appliedCard dataItem="{{item}}" bind:refuse="refuse" bind:agree="agree" data-index="{{index}}"></appliedCard>
+  </block>
+<!-- </block> -->
+<block wx:if="{{noneNews}}">
+  <view class="no-container">
+    目前没有向你提交的申请噢
+  </view>
+</block>

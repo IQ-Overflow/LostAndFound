@@ -1,0 +1,8 @@
+<!--components/personInfo/personInfo.wxml-->
+<view class="container">
+  <view class="person">
+    <!-- <view class="head-img"></view> -->
+    <image src="{{userInfo.avatarUrl}}" class="head-img"></image>
+    <view class="name">{{userInfo.nickName}}</view>
+  </view>
+</view>

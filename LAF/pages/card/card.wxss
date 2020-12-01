@@ -1,0 +1,25 @@
+/* pages/card/card.wxss */
+.tab{
+    display: flex;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 7%;
+    margin-top: 10%;
+    justify-content: space-between;
+}
+.search, .publish{
+    width: 120px;
+    height: 40px;
+    background: white;
+    text-align: center;
+    line-height: 40px;
+    color: #7f7f7f;
+    border: solid 2px #e9b6c2;
+    border-radius: 3px;
+}
+.selected{
+    color: white;
+    background: #e9b6c2;
+}

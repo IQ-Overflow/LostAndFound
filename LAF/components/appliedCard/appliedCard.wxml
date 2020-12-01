@@ -1,0 +1,37 @@
+<view class="card">
+  <view class="top">
+    <view class="person">
+      <image class="avatarUrl" src="{{dataItem.reasonPoster.avatarUrl}}" />
+      <view class="nickname">{{dataItem.reasonPoster.userName}}</view>
+    </view>
+    <view class="moreMsg">
+      <text class="time">{{dataItem.object.time}}</text>
+    </view>
+  </view>
+  <view class="submit-reason">
+    申请理由：{{dataItem.message}}
+  </view>
+  <view class="cardMsg">
+    <view class="text" wx:if="{{dataItem.type===1}}">
+      <view class="num">标题: {{dataItem.object.title}}</view>
+      <view class="name">内容: {{dataItem.object.content}}</view>
+    </view>
+
+    <view class="text" wx:if="{{dataItem.type===0}}">
+      <view class="num">学号: {{dataItem.object.stuID}}</view>
+      <view class="name">姓名: {{dataItem.object.stuName}}</view>
+      <view class="college">学院: {{dataItem.object.college}}</view>
+    </view>
+    <image class="img" src="{{dataItem.object.pic}}" />
+  </view>
+  <view class="func" wx:if="{{dataItem.state===0}}">
+    <view class="ok" bindtap="agree" data-pID="{{dataItem.pID}}" data-fID="{{dataItem.fID}}">通过</view>
+    <view class="refuse" bindtap="refuse"  data-pID="{{dataItem.pID}}" data-fID="{{dataItem.fID}}">拒绝</view>
+  </view>
+  <view class="func" wx:if="{{dataItem.state===2}}">
+    <view class="status-refuse">已拒绝</view>
+  </view>
+  <view class="func" wx:if="{{dataItem.state===1}}">
+    <view class="status-ok">已通过</view>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<view class="input-area">
+    <view class="num input">
+        学号：<input  bindblur="getStuNum" value="{{stuNum}}"/>
+    </view>
+    <view class="name input">
+        姓名：<input  bindblur="getName" value="{{name}}"/>
+    </view>
+    <view class="college input">
+        学院：<input  bindblur="getCollege" value="{{college}}"/>
+    </view>
+    <view class="type input">
+        类型：
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">{{array[index]}}</view>
+        </picker>
+    </view>
+    <view class="input">
+        联系方式：<input bindblur="getContact" value="{{contact}}" type="text"/>
+    </view>
+    <!-- <view class="addPic" bindtap="addPic">
+        添加图片
+        <image class="uploadImg" src="{{uploadImg}}"></image>
+    </view> -->
+    <button size="mini" bindtap="deletePic" class="delBtn" style="display:{{uploadImg==''?'none':'inline'}}">删除图片</button>
+</view>
+<button class="publish" bindtap="publish">发布</button>

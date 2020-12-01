@@ -1,0 +1,25 @@
+<view class="card">
+    <view class="top">
+        <view class="person">
+            <image class="avatarUrl" src="{{dataItem.poster.avatarUrl}}"/>
+            <view class="nickname">{{dataItem.poster.userName}}</view>
+        </view>
+        <view class="moreMsg">
+            <!-- <text class="type">{{type==='lost'?'丢失':'捡到'}}</text> -->
+            <text class="type">{{dataItem.flag===false?'丢失':'捡到'}}</text>
+            <text class="time">{{dataItem.time}}</text>
+        </view>
+    </view>
+    <view class="cardMsg">
+        <view class="text">
+            <view class="num">标题：{{dataItem.title}}</view>
+            <view class="name">内容：{{dataItem.content}}</view>
+            <!-- <view class="college">学院：计算机学院</view> -->
+        </view>
+        <!-- <image class="img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/uDs87DwaPmNH441VpCVSx2K521HXRdYWJ1xzekS7E0NoDSLrdPZS49Mwp7AWynjIJUXcEJwKtib5hqtGDmrwtbg/132" /> -->
+    </view>
+    <view class="func">
+        <view class="state">正在进行</view>
+        <view class="apply" bindtap="applyContact" data-dataItem="{{dataItem}}">申请联系</view>
+    </view>
+</view>
